@@ -96,9 +96,9 @@ This adds icons to the modeline, increases the max length of the git branch, and
 #+end_src
 
 *** Theme
-I switch themes consistently. The ones I use the most are ~doom-monokai-machine~, ~doom-vibrant~, ~doom-gruvbox~, ~doom-dracula~, ~doom-palenight~, and ~doom-solarized-light~ (gotta have at least one light theme!)
+I switch themes consistently. The ones I use the most are ~doom-monokai-machine~, ~doom-vibrant~, ~doom-gruvbox~, ~doom-dracula~, ~doom-palenight~, ~whiteboard~, and ~doom-solarized-light~ (gotta have at least one light theme!)
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-vibrant)
 #+end_src
 
 Enable the org config for doom themes:
@@ -119,8 +119,8 @@ Custom ascii art banner:
           '(",------.,---.---.,------.,------.,------.   "
             "|      ||   |   |       ||       |          "
             "|------'|   |   |,------||       `------.   "
-            "|       |   |   ||      ||              |.-. "
-            "`------''   '   '`------^`------'`------'`-`"))
+            "|       |   |   ||      ||              | _ "
+            "`------''   '   '`------^`------'`------''-'"))
           (longest-line (apply #'max (mapcar #'length banner))))
          (put-text-property
           (point)
@@ -1070,4 +1070,13 @@ The default typing speed in vterm is horrendously slow, the following setting sp
 
 ;; add a keybinding to toggle highlight mode
 
+#+end_src
+
+Add some custom tree sitter fonts
+#+begin_src emacs-lisp
+(custom-set-faces!
+  '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.builtin :slant italic))
+
+(custom-set-faces!
+  '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
 #+end_src

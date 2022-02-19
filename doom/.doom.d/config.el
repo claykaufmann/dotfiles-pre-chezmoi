@@ -62,7 +62,7 @@
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "orange"))
 
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-vibrant)
 
 (doom-themes-org-config)
 
@@ -73,8 +73,8 @@
           '(",------.,---.---.,------.,------.,------.   "
             "|      ||   |   |       ||       |          "
             "|------'|   |   |,------||       `------.   "
-            "|       |   |   ||      ||              |.-. "
-            "`------''   '   '`------^`------'`------'`-`"))
+            "|       |   |   ||      ||              | _ "
+            "`------''   '   '`------^`------'`------''-'"))
           (longest-line (apply #'max (mapcar #'length banner))))
          (put-text-property
           (point)
@@ -759,3 +759,9 @@ Refer to `org-agenda-prefix-format' for more information."
             (signal (car e) (cadr e)))))))
 
 ;; add a keybinding to toggle highlight mode
+
+(custom-set-faces!
+  '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.builtin :slant italic))
+
+(custom-set-faces!
+  '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
