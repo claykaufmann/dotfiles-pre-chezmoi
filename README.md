@@ -12,5 +12,7 @@ I rarely use vim now as I get more and more into emacs, but sometimes I want to 
 ## ZSH
 ZSH is my shell of choice. My config here mostly just has some aliases, and some `$PATH` management.
 
+I use [oh-my-zsh](https://ohmyz.sh) to bootstrap my zsh config, and then I use [spaceship](https://spaceship-prompt.sh) to make my terminal look much better as well, to display useful information on the command line.
+
 ## Git
 my gitconfig is here, pretty simple, mainly just adding the [delta](https://github.com/dandavison/delta) difftool to be the git diff tool.
