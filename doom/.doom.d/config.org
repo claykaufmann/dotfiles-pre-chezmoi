@@ -305,8 +305,34 @@ Disable LSP format in JS so prettier is used instead:
 #+end_src
 
 *** Python
-**** TODO Add keybindings for quick access to poetry and ein
-I am thinking for both it should be something like ~SPC P~, and then ~e~ for ein and ~p~ for poetry
+**** Keybindings
+As I code in python a fair bit, having access to these tools without using ~M-x~ is quite useful.
+
+Add mappings for conda:
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix-map ("P" . "Python")
+       (:prefix ("c" . "conda")
+        :desc "conda env activate" "a" #'conda-env-activate
+        :desc "conda env deactivate" "d" #'conda-env-deactivate)))
+#+end_src
+
+Pyenv:
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix ("P")
+       (:prefix ("v" . "pyenv")
+        :desc "set python version" "s" #'pyenv-mode-set
+        :desc "unset python version" "u" #'pyenv-mode-unset)))
+#+end_src
+
+Add mappings for poetry:
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix ("P")
+       (:prefix ("p" . "poetry")
+        :desc "poetry menu" "p" #'poetry)))
+#+end_src
 
 **** Poetry
 Add ~poetry~ to path so poetry.el can find it:

@@ -215,6 +215,23 @@
 (setq-hook! 'js-mode-hook +format-with-lsp nil)
 (setq-hook! 'web-mode-hook +format-with-lsp nil)
 
+(map! :leader
+      (:prefix-map ("P" . "Python")
+       (:prefix ("c" . "conda")
+        :desc "conda env activate" "a" #'conda-env-activate
+        :desc "conda env deactivate" "d" #'conda-env-deactivate)))
+
+(map! :leader
+      (:prefix ("P")
+       (:prefix ("v" . "pyenv")
+        :desc "set python version" "s" #'pyenv-mode-set
+        :desc "unset python version" "u" #'pyenv-mode-unset)))
+
+(map! :leader
+      (:prefix ("P")
+       (:prefix ("p" . "poetry")
+        :desc "poetry menu" "p" #'poetry)))
+
 (setenv "PATH" (concat ":/Users/claykaufmann/.local/bin" (getenv "PATH")))
 (add-to-list 'exec-path "/Users/claykaufmann/.local/bin")
 
