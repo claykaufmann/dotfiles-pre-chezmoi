@@ -62,7 +62,7 @@
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "orange"))
 
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-dracula)
 
 (doom-themes-org-config)
 
@@ -259,6 +259,8 @@
 
 (setq org-element-use-cache nil)
 
+(setq company-global-modes '(not org-mode))
+
 (require 'org-mac-iCal)
 
 (setq org-mac-iCal-range 10)
@@ -364,7 +366,7 @@ It is relative to `org-directory', unless it is absolute.")
    ;; this makes org agenda look bad, so i disable it
    ;; '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
 
-   '(org-verbatim ((t (:inherit variable-pitch :foreground "#00ee00")))))
+   '(org-verbatim ((t (:inherit variable-pitch)))))
 
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'variable-pitch-mode)

@@ -96,9 +96,9 @@ This adds icons to the modeline, increases the max length of the git branch, and
 #+end_src
 
 *** Theme
-I switch themes consistently. The ones I use the most are ~doom-monokai-machine~, ~doom-vibrant~, ~doom-gruvbox~, ~doom-dracula~, ~doom-palenight~, ~whiteboard~, and ~doom-solarized-light~ (gotta have at least one light theme!)
+I switch themes consistently. The ones I use the most are ~doom-monokai-machine~, ~doom-vibrant~, ~doom-gruvbox~, ~doom-dracula~, ~doom-palenight~, ~doom-acario-light~, and ~doom-solarized-light~
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-dracula)
 #+end_src
 
 Enable the org config for doom themes:
@@ -397,6 +397,12 @@ Disable caching to stop an error:
 (setq org-element-use-cache nil)
 #+end_src
 
+Disable company in org (it causes a ton of slowdown)
+If there is a way to allow company without causing slowdown, I'll do that here.
+#+begin_src emacs-lisp
+(setq company-global-modes '(not org-mode))
+#+end_src
+
 *** org Mac iCal
 Enable org mac ical
 #+begin_src emacs-lisp
@@ -551,7 +557,8 @@ Use custom faces for diff org elements:
    ;; this makes org agenda look bad, so i disable it
    ;; '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
 
-   '(org-verbatim ((t (:inherit variable-pitch :foreground "#00ee00")))))
+   '(org-verbatim ((t (:inherit variable-pitch)))))
+
 #+end_src
 
 Add a couple hooks to enable visual line and variable pitch mode in org mode:
