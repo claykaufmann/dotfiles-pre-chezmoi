@@ -108,11 +108,12 @@ Make a few theme-dependent changes: (this is for doom-snazzy, reset vars to be w
   '(org-headline-done :foreground "#565761"))
 #+end_src
 
-Add some custom tree sitter colors:
+Add some custom tree sitter colors for better looking highlighting:
 #+begin_src emacs-lisp
 (custom-set-faces!
   '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
-  '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
+  '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil)
+  '(tree-sitter-hl-face:variable.parameter :foreground "#dda0dd"))
 #+end_src
 
 Enable the org config for doom themes:

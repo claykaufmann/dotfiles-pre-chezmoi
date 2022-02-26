@@ -70,7 +70,8 @@
 
 (custom-set-faces!
   '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
-  '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
+  '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil)
+  '(tree-sitter-hl-face:variable.parameter :foreground "#dda0dd"))
 
 (doom-themes-org-config)
 
