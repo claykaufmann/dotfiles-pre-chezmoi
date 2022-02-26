@@ -98,7 +98,21 @@ This adds icons to the modeline, increases the max length of the git branch, and
 *** Theme
 I switch themes consistently. The ones I use the most are ~doom-monokai-machine~, ~doom-vibrant~, ~doom-gruvbox~, ~doom-dracula~, ~doom-palenight~, ~doom-acario-light~, and ~doom-solarized-light~
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-snazzy)
+#+end_src
+
+Make a few theme-dependent changes: (this is for doom-snazzy, reset vars to be white, and org done to be greyed out)
+#+begin_src emacs-lisp
+(custom-set-faces!
+  '(font-lock-variable-name-face :foreground "white")
+  '(org-headline-done :foreground "#565761"))
+#+end_src
+
+Add some custom tree sitter colors:
+#+begin_src emacs-lisp
+(custom-set-faces!
+  '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
+  '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
 #+end_src
 
 Enable the org config for doom themes:
@@ -1108,8 +1122,6 @@ The default typing speed in vterm is horrendously slow, the following setting sp
 Add some custom tree sitter fonts
 #+begin_src emacs-lisp
 (custom-set-faces!
-  '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.builtin :slant italic))
-
-(custom-set-faces!
+  '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
   '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
 #+end_src

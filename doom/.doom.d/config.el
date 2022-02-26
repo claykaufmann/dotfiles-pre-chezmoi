@@ -62,7 +62,15 @@
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "orange"))
 
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-snazzy)
+
+(custom-set-faces!
+  '(font-lock-variable-name-face :foreground "white")
+  '(org-headline-done :foreground "#565761"))
+
+(custom-set-faces!
+  '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
+  '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
 
 (doom-themes-org-config)
 
@@ -780,7 +788,5 @@ Refer to `org-agenda-prefix-format' for more information."
 ;; add a keybinding to toggle highlight mode
 
 (custom-set-faces!
-  '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.builtin :slant italic))
-
-(custom-set-faces!
+  '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
   '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
