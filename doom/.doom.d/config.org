@@ -389,7 +389,7 @@ I thought this should go in org config, but its really technically not a part of
 
 Set the file location:
 #+begin_src emacs-lisp
-;;(setq diary-file "~/diary")
+(setq diary-file "~/Dropbox/Org-Utils/diary")
 #+end_src
 
 * Org Config

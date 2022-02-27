@@ -259,7 +259,7 @@
   (add-hook 'conda-postactivate-hook (lambda () (lsp-restart-workspace)))
   (add-hook 'conda-postdeactivate-hook (lambda () (lsp-restart-workspace))))
 
-;;(setq diary-file "~/diary")
+(setq diary-file "~/Dropbox/Org-Utils/diary")
 
 (setq org-directory "~/Dropbox/Terrapin/")
 (setq org-roam-directory "~/Dropbox/Terrapin/")
