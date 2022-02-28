@@ -460,7 +460,7 @@ It is relative to `org-directory', unless it is absolute.")
          :unnarrowed t)
 
         ;; the project template, used for projects WITH A DEADLINE
-        ("p" "project" plain "* Overview\n\n* Tasks\n** TODO Set project name and deadline\n\n* Thoughts\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
+        ("p" "project" plain "* Overview\n\n* Tasks\n** TODO Set project name and deadline\n\n* Ideas\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: project")
          :unnarrowed t)
 
@@ -470,7 +470,7 @@ It is relative to `org-directory', unless it is absolute.")
          :unnarrowed t)
 
         ;; class template, used as the homepage for a class
-        ("C" "class" plain "* Class Overview\n\n\n* Homework\n\n\n* Notes\n\n\n* Thoughts\n"
+        ("C" "class" plain "* Class Overview\n\n\n* Homework\n\n\n* Notes\n\n\n* Ideas\n"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: class:classname")
          :unnarrowed t)
 
