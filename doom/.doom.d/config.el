@@ -14,11 +14,6 @@
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 
-;; prompt for buffer (unsure if I like this, removing it for now)
-;; (defadvice! prompt-for-buffer (&rest _)
-;;   :after '(evil-window-split evil-window-vsplit)
-;;   (ivy-switch-buffer))
-
 (setq doom-fallback-buffer-name "► Emacs"
       +doom-dashboard-name "► Doom")
 
@@ -268,7 +263,9 @@
 
 (setq org-element-use-cache nil)
 
-(setq company-global-modes '(not org-mode))
+(defun jpk/org-mode-hook ()
+  (company-mode -1))
+(add-hook 'org-mode-hook 'jpk/org-mode-hook)
 
 (require 'org-mac-iCal)
 

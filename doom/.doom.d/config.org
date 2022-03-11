@@ -11,7 +11,7 @@ This is my personal emacs config, for use with doom emacs! If you can, open this
 #+end_src
 
 ** Simple changes
-Make the undo limit much larger, and more exact.
+Make the undo limit much larger, and make jumping through words more exact.
 #+begin_src emacs-lisp
 (setq undo-limit 80000000
       evil-want-fine-undo t
@@ -26,16 +26,11 @@ Make emacs open maximized:
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
-Ask which buffer I want to see when splitting windows (thanks to [[https://tecosaur.github.io/emacs-config/config.html][tecosaur's config]])
+Swap to the new buffer with a normal window split
 #+begin_src emacs-lisp
 ;; swap to new window when splitting normally
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
-
-;; prompt for buffer (unsure if I like this, removing it for now)
-;; (defadvice! prompt-for-buffer (&rest _)
-;;   :after '(evil-window-split evil-window-vsplit)
-;;   (ivy-switch-buffer))
 #+end_src
 
 Better buffer and frame names: (thanks to [[https://tecosaur.github.io/emacs-config/config.html][tecosaur!]] )
@@ -413,9 +408,11 @@ Disable caching to stop an error:
 #+end_src
 
 Disable company in org (it causes a ton of slowdown)
-If there is a way to allow company without causing slowdown, I'll do that here.
+If there is a way to allow company without causing slowdown, I'll do that here. This was taken from [[https://stackoverflow.com/questions/34652692/how-to-turn-off-company-mode-in-org-mode/34660219][this stackoverflow link]].
 #+begin_src emacs-lisp
-(setq company-global-modes '(not org-mode))
+(defun jpk/org-mode-hook ()
+  (company-mode -1))
+(add-hook 'org-mode-hook 'jpk/org-mode-hook)
 #+end_src
 
 *** org Mac iCal
