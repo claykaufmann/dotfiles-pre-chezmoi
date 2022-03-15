@@ -220,7 +220,7 @@
 (setq-hook! 'web-mode-hook +format-with-lsp nil)
 
 (map! :leader
-      (:prefix-map ("P" . "Python")
+      (:prefix-map ("P" . "python")
        (:prefix ("c" . "conda")
         :desc "conda env activate" "a" #'conda-env-activate
         :desc "conda env deactivate" "d" #'conda-env-deactivate)))

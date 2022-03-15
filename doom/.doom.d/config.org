@@ -321,7 +321,7 @@ As I code in python a fair bit, having access to these tools without using ~M-x~
 Add mappings for conda:
 #+begin_src emacs-lisp
 (map! :leader
-      (:prefix-map ("P" . "Python")
+      (:prefix-map ("P" . "python")
        (:prefix ("c" . "conda")
         :desc "conda env activate" "a" #'conda-env-activate
         :desc "conda env deactivate" "d" #'conda-env-deactivate)))
