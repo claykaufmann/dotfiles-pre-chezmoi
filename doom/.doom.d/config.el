@@ -508,6 +508,10 @@ It is relative to `org-directory', unless it is absolute.")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: resource")
          :unnarrowed t)
 
+        ("w" "weekly goal setting" plain "* Goals\n\n* Action Items\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: weeklygoals")
+         :unnarrowed t)
+
         ;; an assignment note, used for tracking progress on an assignment
         ("a" "assignment" plain "* Overview\n\n* Tasks\n** TODO add assignment name and deadline\n\n* Notes\n\n* Ideas\n\n* Resources\n\n* ASGN assignmentname"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: assignment:class")

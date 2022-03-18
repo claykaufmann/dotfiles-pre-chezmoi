@@ -10,6 +10,8 @@ This is my personal emacs config, for use with doom emacs! If you can, open this
       user-mail-address "claykaufmann@gmail.com")
 #+end_src
 
+*** TODO add GPG information here to sign commits
+
 ** Simple changes
 Make the undo limit much larger, and make jumping through words more exact.
 #+begin_src emacs-lisp
@@ -669,6 +671,8 @@ I use org capture templates purely with an inbox file. I keep an inbox file per 
 #+end_src
 
 For almost everything else, I used some org roam templates for creating new notes in org roam. There are a couple overlaps, used when I already know where I will be categorizing something.
+
+*** TODO make these come from actual org files
 #+begin_src emacs-lisp
 (setq org-roam-capture-templates
       ;; the default template for a note
@@ -727,6 +731,10 @@ For almost everything else, I used some org roam templates for creating new note
 
         ("r" "resource" plain "* Overview\n\n\n* References\n"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: resource")
+         :unnarrowed t)
+
+        ("w" "weekly goal setting" plain "* Goals\n\n* Action Items\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: weeklygoals")
          :unnarrowed t)
 
         ;; an assignment note, used for tracking progress on an assignment
