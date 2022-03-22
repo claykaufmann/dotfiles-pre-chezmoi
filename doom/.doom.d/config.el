@@ -648,7 +648,7 @@ It is relative to `org-directory', unless it is absolute.")
                           ;; tasks with no due date
                           (:name "No due date"
                            :deadline nil
-                           :order 10
+                           :order 70
                            )
 
                           ;; emacs related tasks (before projects to separate them)
@@ -661,6 +661,10 @@ It is relative to `org-directory', unless it is absolute.")
                            :discard (:todo "PROJ")
                            :tag ("project" "metaproject")
                            :order 7)
+
+                          (:name "Others"
+                           :deadline t
+                           :order 10)
 
                           ;; discard all things with the REFILE tag, as they will appear in the next group
                           (:discard (:tag "REFILE")
