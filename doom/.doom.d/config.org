@@ -765,7 +765,7 @@ Set the agenda file directories. Use the main Org folder, the daily notes folder
 
 Disable the diary by default in agenda views, as it adds clutter to the default weekly agenda. In the weekly agenda I simply want to see when tasks are due, I do not want to see when my classes are.
 #+begin_src emacs-lisp
-(setq org-agenda-include-diary nil)
+(setq org-agenda-include-diary t)
 #+end_src
 
 Start in log mode, include deadlines

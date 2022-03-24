@@ -527,7 +527,7 @@ It is relative to `org-directory', unless it is absolute.")
                              "~/Dropbox/Terrapin/"
                              "~/.doom.d/config.org"))
 
-(setq org-agenda-include-diary nil)
+(setq org-agenda-include-diary t)
 
 (setq org-agenda-start-with-log-mode t)
 (setq org-agenda-include-deadlines t)
