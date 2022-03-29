@@ -267,6 +267,15 @@
   (company-mode -1))
 (add-hook 'org-mode-hook 'jpk/org-mode-hook)
 
+(setq org-latex-create-formula-image-program 'imagemagick)
+
+(setenv "PATH" (concat ":/Library/TeX/texbin/" (getenv "PATH")))
+(add-to-list 'exec-path "/Library/TeX/texbin/")
+
+(map! :leader
+      (:prefix ("n")
+       (:desc "render latex" "L" #'org-latex-preview)))
+
 (require 'org-mac-iCal)
 
 (setq org-mac-iCal-range 10)

@@ -417,6 +417,25 @@ If there is a way to allow company without causing slowdown, I'll do that here. 
 (add-hook 'org-mode-hook 'jpk/org-mode-hook)
 #+end_src
 
+*** Latex Settings
+Add a setting for latex previews:
+#+begin_src emacs-lisp
+(setq org-latex-create-formula-image-program 'imagemagick)
+#+end_src
+
+Add latex to path to allow org mode to render it:
+#+begin_src emacs-lisp
+(setenv "PATH" (concat ":/Library/TeX/texbin/" (getenv "PATH")))
+(add-to-list 'exec-path "/Library/TeX/texbin/")
+#+end_src
+
+Add a keybinding for rendering latex:
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix ("n")
+       (:desc "render latex" "L" #'org-latex-preview)))
+#+end_src
+
 *** org Mac iCal
 Enable org mac ical
 #+begin_src emacs-lisp
