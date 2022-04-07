@@ -728,6 +728,12 @@ Refer to `org-agenda-prefix-format' for more information."
         (s-truncate len (s-pad-right len " " result))
       result)))
 
+(map! :leader
+      (:prefix ("n")
+       (:prefix ("r")
+        :desc "activate org roam ui" "o" #'org-roam-ui-open
+        :desc "toggle org roam ui mode" "u" #'org-roam-ui-mode)))
+
 (setq projectile-project-search-path '("~/Projects/"))
 (setq projectile-auto-discover t)
 

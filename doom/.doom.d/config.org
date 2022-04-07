@@ -1029,6 +1029,16 @@ Refer to `org-agenda-prefix-format' for more information."
       result)))
 #+end_src
 
+** Extra Org Keybindings
+Add some keybindings to activate org roam ui.
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix ("n")
+       (:prefix ("r")
+        :desc "activate org roam ui" "o" #'org-roam-ui-open
+        :desc "toggle org roam ui mode" "u" #'org-roam-ui-mode)))
+#+end_src
+
 
 * Package Configuration
 ** Projectile
