@@ -509,7 +509,7 @@ It is relative to `org-directory', unless it is absolute.")
          :unnarrowed t)
 
         ;; a cooking recipe note, used for storing all of my cooking recipes
-        ("R" "cooking recipe" plain "* Overview\n\n\n* Ingredients\n\n* Recipe\n\n* Cooking Log\n** Date\n** Time Taken\n** Thoughts"
+        ("R" "cooking recipe" plain "* Overview\n\n\n* Ingredients\n\n* Recipe\n\n* Cooking Log\n** Date\n** Time Taken\n** Thoughts\n* Links\n- [[id:b10487ad-2402-418f-85af-3f1513b1b631][Cooking Recipes]] "
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: recipe")
          :unnarrowed t)
 
@@ -528,7 +528,7 @@ It is relative to `org-directory', unless it is absolute.")
 
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
-         "* Tasks\n\n\n* Ideas\n\n\n* Thoughts\n\n\n* Daily Journal\n"
+         "* [[id:84572ce2-320f-439a-badf-ad24577b493e][Daily Note]] for %<%Y-%m-%d>\n* Tasks\n\n\n* Ideas\n\n\n* Thoughts\n\n\n* Daily Journal\n"
          :target (file+head "%<%Y-%m-%d>.org"
                             "#+title: %<%Y-%m-%d>\n"))))
 
