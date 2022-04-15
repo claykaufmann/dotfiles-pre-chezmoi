@@ -342,24 +342,17 @@ It is relative to `org-directory', unless it is absolute.")
 ;; use pretty things for the clocktable
 (setq org-pretty-entities t)
 
-(let* ((variable-tuple
-        (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
-              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
-              ((x-list-fonts "Verdana")         '(:font "Verdana"))
-              ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-              (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-       (headline           `(:inherit default :weight bold)))
   (custom-theme-set-faces
    'user
-   `(org-level-8 ((t (,@headline ,@variable-tuple))))
-   `(org-level-7 ((t (,@headline ,@variable-tuple))))
-   `(org-level-6 ((t (,@headline ,@variable-tuple))))
-   `(org-level-5 ((t (,@headline ,@variable-tuple :height 1.05 :inherit outline-5))))
-   `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.05 :inherit outline-4))))
-   `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.1 :inherit outline-3))))
-   `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.2 :inherit outline-2))))
-   `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.4 :inherit outline-1))))
-   `(org-document-title ((t (,@headline ,@variable-tuple :height 1.0 :underline nil))))))
+   `(org-level-8 ((t)))
+   `(org-level-7 ((t)))
+   `(org-level-6 ((t)))
+   `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
+   `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
+   `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
+   `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
+   `(org-level-1 ((t (:height 1.4 :inherit outline-1))))
+   `(org-document-title ((t (:height 1.0 :underline nil)))))
 
 (custom-theme-set-faces
    'user
@@ -377,19 +370,10 @@ It is relative to `org-directory', unless it is absolute.")
    '(org-property-value ((t (:inherit fixed-pitch))) t)
    '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
    '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-
-   ;; this makes org agenda look bad, so i disable it
-   ;; '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
-
    '(org-verbatim ((t (:inherit variable-pitch)))))
 
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'variable-pitch-mode)
-
-(defun org-diff-theme-hook ()
-  (setq doom-theme 'doom-dracula))
-
-(add-hook 'org-mode-hook 'org-diff-theme-hook)
 
 (setq org-hide-emphasis-markers t)
 
@@ -418,12 +402,6 @@ It is relative to `org-directory', unless it is absolute.")
   (add-hook 'org-mode-hook 'my/pretty-symbols)
 
 (after! org
-  ;; (font-lock-add-keywords 'org-mode
-  ;;                         '(("^ *\\([-]\\) "
-  ;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-  ;; (font-lock-add-keywords 'org-mode
-  ;;                         '(("^ *\\([+]\\) "
-  ;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
   (setq org-ellipsis " ▾ "))
 
 (after! org
@@ -528,7 +506,7 @@ It is relative to `org-directory', unless it is absolute.")
 
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
-         "* [[id:84572ce2-320f-439a-badf-ad24577b493e][Daily Note]] for %<%Y-%m-%d>\n* Tasks\n\n\n* Ideas\n\n\n* Thoughts\n\n\n* Daily Journal\n"
+         "* Tasks\n\n\n* Ideas\n\n\n* Thoughts\n\n\n* Daily Journal\n* [[id:84572ce2-320f-439a-badf-ad24577b493e][Daily Note]] for %<%Y-%m-%d>"
          :target (file+head "%<%Y-%m-%d>.org"
                             "#+title: %<%Y-%m-%d>\n"))))
 
