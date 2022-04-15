@@ -342,17 +342,17 @@ It is relative to `org-directory', unless it is absolute.")
 ;; use pretty things for the clocktable
 (setq org-pretty-entities t)
 
-  (custom-theme-set-faces
-   'user
-   `(org-level-8 ((t)))
-   `(org-level-7 ((t)))
-   `(org-level-6 ((t)))
-   `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
-   `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
-   `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
-   `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
-   `(org-level-1 ((t (:height 1.4 :inherit outline-1))))
-   `(org-document-title ((t (:height 1.0 :underline nil)))))
+(custom-theme-set-faces
+ 'user
+ `(org-level-8 ((t)))
+ `(org-level-7 ((t)))
+ `(org-level-6 ((t)))
+ `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
+ `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
+ `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
+ `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
+ `(org-level-1 ((t (:height 1.4 :inherit outline-1))))
+ `(org-document-title ((t (:height 1.0 :underline nil)))))
 
 (custom-theme-set-faces
    'user

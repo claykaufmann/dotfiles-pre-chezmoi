@@ -10,8 +10,6 @@ This is my personal emacs config, for use with doom emacs! If you can, open this
       user-mail-address "claykaufmann@gmail.com")
 #+end_src
 
-*** TODO add GPG information here to sign commits
-
 ** Simple changes
 Make the undo limit much larger, and make jumping through words more exact.
 #+begin_src emacs-lisp
