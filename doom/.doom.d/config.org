@@ -1005,8 +1005,8 @@ Add some keybindings to activate org roam ui.
 (map! :leader
       (:prefix ("n")
        (:prefix ("r")
-        :desc "activate org roam ui" "o" #'org-roam-ui-open
-        :desc "toggle org roam ui mode" "u" #'org-roam-ui-mode)))
+        :desc "open org roam ui" "o" #'org-roam-ui-open
+        :desc "toggle org roam ui" "u" #'org-roam-ui-mode)))
 #+end_src
 
 
