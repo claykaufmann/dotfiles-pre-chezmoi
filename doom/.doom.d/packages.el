@@ -55,9 +55,9 @@
 (package! tree-sitter)
 (package! tree-sitter-langs)
 
-(unpin! org-roam)
-(package! websocket)
-(package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
+(unpin! org-roam) ; this line causes issues with doom upgrade, comment out to upgrade doom
+(package! org-roam-ui)
+
 (package! peep-dired)
 (package! dired-open)
 (package! org-bullets)

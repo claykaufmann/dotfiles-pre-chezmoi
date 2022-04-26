@@ -1055,8 +1055,8 @@ Reference [[https://github.com/dandavison/magit-delta/issues/6][available here]]
                                       (magit-diff-added-highlight . default))))))
 #+end_src
 
-** Org Roam
-This is the suggested org roam config, from their [[https://github.com/org-roam/org-roam][GitHub install instructions for Doom Emacs]].
+** Org Roam-UI
+This is the suggested org roam config, from [[https://github.com/org-roam/org-roam-ui][the github repo]].
 #+begin_src emacs-lisp
 (use-package! websocket
   :after org-roam)
