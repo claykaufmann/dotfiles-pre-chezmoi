@@ -434,17 +434,6 @@ Add a keybinding for rendering latex:
        (:desc "render latex" "L" #'org-latex-preview)))
 #+end_src
 
-*** org Mac iCal
-Enable org mac ical
-#+begin_src emacs-lisp
-(require 'org-mac-iCal)
-#+end_src
-
-Set calendar list:
-#+begin_src emacs-lisp
-(setq org-mac-iCal-range 10)
-#+end_src
-
 *** Inbox
 For all inbox-related things, I use a vulpea function that is based on the system name. There is one inbox file per system. The idea is to use inherited tags so all headings in an inbox file are marked with the ~REFILE~ tag. I then have an agenda view that shows all things that need to be refiled.
 
