@@ -76,6 +76,3 @@
 
 ;; magit-delta
 (package! magit-delta)
-
-(package! org-mac-iCal
-  :recipe (:local-repo "lisp/app"))
