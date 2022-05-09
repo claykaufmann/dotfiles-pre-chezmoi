@@ -91,9 +91,9 @@ This adds icons to the modeline, increases the max length of the git branch, and
 #+end_src
 
 *** Theme
-I switch themes consistently. The ones I use the most are ~doom-vibrant~, ~doom-gruvbox~, ~doom-dracula~, ~doom-palenight~, and ~doom-solarized-light~
+I switch themes consistently. The ones I use the most are ~doom-vibrant~, ~doom-gruvbox~, ~doom-material~, ~doom-dracula~, ~doom-palenight~, and ~doom-solarized-light~
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-palenight)
+(setq doom-theme 'doom-vibrant)
 #+end_src
 
 Make a few theme-dependent changes
