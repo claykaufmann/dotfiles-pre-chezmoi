@@ -91,15 +91,14 @@ This adds icons to the modeline, increases the max length of the git branch, and
 #+end_src
 
 *** Theme
-I switch themes consistently. The ones I use the most are ~doom-monokai-machine~, ~doom-vibrant~, ~doom-gruvbox~, ~doom-dracula~, ~doom-palenight~, ~doom-acario-light~, and ~doom-solarized-light~
+I switch themes consistently. The ones I use the most are ~doom-vibrant~, ~doom-gruvbox~, ~doom-dracula~, ~doom-palenight~, and ~doom-solarized-light~
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-snazzy)
+(setq doom-theme 'doom-palenight)
 #+end_src
 
-Make a few theme-dependent changes: (this is for doom-snazzy, reset vars to be white, and org done to be greyed out)
+Make a few theme-dependent changes
 #+begin_src emacs-lisp
 (custom-set-faces!
-  '(font-lock-variable-name-face :foreground "white")
   '(org-headline-done :foreground "#565761"))
 #+end_src
 
@@ -117,11 +116,6 @@ Enable the org config for doom themes:
 #+end_src
 
 *** Dashboard
-Use a custom dashboard image:
-#+begin_src emacs-lisp
-;; (setq fancy-splash-image "~/.doom.d/misc/M-x_butterfly.png")
-#+end_src
-
 Custom ascii art banner:
 #+begin_src emacs-lisp
 (defun doom-dashboard-draw-ascii-emacs-banner-fn ()
