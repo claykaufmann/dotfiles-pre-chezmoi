@@ -192,3 +192,4 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 # had to comment out following line as it conflicts with pyenv, unsure if this will break emacs c LSP, if so we will manually add llvm to emacs path
 #export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="/Applications/CMake.app/Contents/bin":"$PATH"
+
