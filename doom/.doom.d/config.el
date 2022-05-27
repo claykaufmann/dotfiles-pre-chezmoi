@@ -391,8 +391,8 @@ It is relative to `org-directory', unless it is absolute.")
           ("#+END_QUOTE" . ?)
           ("#+end_quote" . ?)
           ))
-        (prettify-symbols-mode 1))
-  (add-hook 'org-mode-hook 'my/pretty-symbols)
+  (prettify-symbols-mode 1))
+(add-hook 'org-mode-hook 'my/pretty-symbols)
 
 (after! org
   (setq org-ellipsis " ▾ "))
