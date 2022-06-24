@@ -34,5 +34,7 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 
 else
     ismac=0
-    echo "Installed linux specific files..."
+    echo "Installing linux specific files..."
 fi
+
+echo "Successfully installed dotfiles."
