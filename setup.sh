@@ -45,6 +45,8 @@ else
     ln -s $SCRIPT_DIR/linux/rofi ~/.config/rofi
     ln -s $SCRIPT_DIR/linux/starship.toml ~/.config/
     ln -s $SCRIPT_DIR/linux/sxhkd ~/.config/sxhkd
+    ln -s $SCRIPT_DIR/linux/gtk-2.0 ~/.config/gtk-2.0
+    ln -s $SCRIPT_DIR/linux/gtk-3.0 ~/.config/gtk-3.0
 fi
 
 echo "Successfully installed dotfiles."
