@@ -4,8 +4,7 @@
 "$HOME/.config/bspwm/clean" &
 
 #Start polybar first
-bash ~/.config/polybar/launch.sh &
-feh --bg-fill ~/Pictures/background.jpg &
+bash ~/.config/polybar/launch.sh
 
 # Variable Defines
 color0=#3B4252
