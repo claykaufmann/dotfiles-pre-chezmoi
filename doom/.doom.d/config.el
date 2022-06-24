@@ -30,21 +30,6 @@
            (unless (string= "-" project-name)
              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 
-(defun fix-fonts ()
-  (let ((unicode-fonts (list
-                        "faicon"
-                        "Weather Icons"
-                        "github-octicons"
-                        "FontAwesome"
-                        "all-the-icons"
-                        "file-icons"
-                        "Material Icons")))
-    (dolist (fnt unicode-fonts)
-      (when (member fnt (font-family-list))
-        (set-fontset-font t 'unicode fnt nil 'prepend)))))
-
-(add-hook 'after-init-hook 'fix-fonts)
-
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)) ; slant 'normal prob not needed
 
 ;; set relative lines
@@ -384,10 +369,10 @@ It is relative to `org-directory', unless it is absolute.")
 (defun my/pretty-symbols ()
   (interactive)
   (setq prettify-symbols-alist
-        '(("#+begin_src" . ?)
-          ("#+BEGIN_SRC" . ?)
-          ("#+end_src" . ?)
-          ("#+END_SRC" . ?)
+        '(("#+begin_src" . ?)
+          ("#+BEGIN_SRC" . ?)
+          ("#+end_src" . ?)
+          ("#+END_SRC" . ?)
           ("#+header" . ?)
           ("#+HEADER" . ?)
           (":PROPERTIES:" . ?)
@@ -397,10 +382,10 @@ It is relative to `org-directory', unless it is absolute.")
           ("[ ]" . ?)
           ("[-]" . ?)
           ("[X]" . ?)
-          ("#+BEGIN_QUOTE" . ?)
-          ("#+begin_quote" . ?)
-          ("#+END_QUOTE" . ?)
-          ("#+end_quote" . ?)
+          ("#+BEGIN_QUOTE" . ?)
+          ("#+begin_quote" . ?)
+          ("#+END_QUOTE" . ?)
+          ("#+end_quote" . ?)
           ))
   (prettify-symbols-mode 1))
 (add-hook 'org-mode-hook 'my/pretty-symbols)

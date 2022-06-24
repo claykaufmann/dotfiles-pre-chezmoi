@@ -52,24 +52,6 @@ Better buffer and frame names: (thanks to [[https://tecosaur.github.io/emacs-con
              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 #+end_src
 
-Fix all-the-icons displaying the incorrect icons
-#+begin_src emacs-lisp
-(defun fix-fonts ()
-  (let ((unicode-fonts (list
-                        "faicon"
-                        "Weather Icons"
-                        "github-octicons"
-                        "FontAwesome"
-                        "all-the-icons"
-                        "file-icons"
-                        "Material Icons")))
-    (dolist (fnt unicode-fonts)
-      (when (member fnt (font-family-list))
-        (set-fontset-font t 'unicode fnt nil 'prepend)))))
-
-(add-hook 'after-init-hook 'fix-fonts)
-#+end_src
-
 ** Visual Settings
 My default font is the nerd font variant of Fira Code. Nerd fonts can be found [[https://www.nerdfonts.com][here]]. There are a project by Ryan Oasis, and a quite useful one at that. They allow glyphs to appear, commonly used in Terminal fonts, and other applications.
 #+begin_src emacs-lisp
@@ -595,10 +577,10 @@ Prettify symbols:
 (defun my/pretty-symbols ()
   (interactive)
   (setq prettify-symbols-alist
-        '(("#+begin_src" . ?)
-          ("#+BEGIN_SRC" . ?)
-          ("#+end_src" . ?)
-          ("#+END_SRC" . ?)
+        '(("#+begin_src" . ?)
+          ("#+BEGIN_SRC" . ?)
+          ("#+end_src" . ?)
+          ("#+END_SRC" . ?)
           ("#+header" . ?)
           ("#+HEADER" . ?)
           (":PROPERTIES:" . ?)
@@ -608,10 +590,10 @@ Prettify symbols:
           ("[ ]" . ?)
           ("[-]" . ?)
           ("[X]" . ?)
-          ("#+BEGIN_QUOTE" . ?)
-          ("#+begin_quote" . ?)
-          ("#+END_QUOTE" . ?)
-          ("#+end_quote" . ?)
+          ("#+BEGIN_QUOTE" . ?)
+          ("#+begin_quote" . ?)
+          ("#+END_QUOTE" . ?)
+          ("#+end_quote" . ?)
           ))
   (prettify-symbols-mode 1))
 (add-hook 'org-mode-hook 'my/pretty-symbols)
