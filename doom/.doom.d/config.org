@@ -517,11 +517,6 @@ The following are a collection of useful options for clocking, most taken from [
 ** Visuals
 [[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][This article]] has some great tips for customizing org mode to look much better. The following few code blocks take some stuff from that article to make org mode look much better.
 
-Disable line numbers in org mode:
-#+begin_src emacs-lisp
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
-#+end_src
-
 Make headlines slightly larger:
 #+begin_src emacs-lisp
   (custom-theme-set-faces
@@ -537,34 +532,39 @@ Make headlines slightly larger:
    `(org-document-title ((t (:height 1.0 :underline nil)))))
 #+end_src
 
+Disable line numbers in org mode:
+#+begin_src emacs-lisp
+;; (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+#+end_src
+
 Set var and fixed pitch fonts:
 #+begin_src emacs-lisp
-(custom-theme-set-faces
- 'user
- '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
- '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
+;; (custom-theme-set-faces
+;;  'user
+;;  '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
+;;  '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
 #+end_src
 
 Style some org elements to look better
 #+begin_src emacs-lisp
-(custom-theme-set-faces
- 'user
- '(org-block ((t (:inherit fixed-pitch))))
- '(org-code ((t (:inherit (shadow fixed-pitch)))))
- '(org-document-info ((t (:foreground "dark orange"))))
- '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-property-value ((t (:inherit fixed-pitch))) t)
- '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
- '(org-verbatim ((t (:inherit variable-pitch)))))
+;; (custom-theme-set-faces
+;;  'user
+;;  '(org-block ((t (:inherit fixed-pitch))))
+;;  '(org-code ((t (:inherit (shadow fixed-pitch)))))
+;;  '(org-document-info ((t (:foreground "dark orange"))))
+;;  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+;;  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+;;  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+;;  '(org-property-value ((t (:inherit fixed-pitch))) t)
+;;  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+;;  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+;;  '(org-verbatim ((t (:inherit variable-pitch)))))
 #+end_src
 
 Add a couple hooks to enable visual line and variable pitch mode in org mode:
 #+begin_src emacs-lisp
-(add-hook 'org-mode-hook 'visual-line-mode)
-(add-hook 'org-mode-hook 'variable-pitch-mode)
+;; (add-hook 'org-mode-hook 'visual-line-mode)
+;; (add-hook 'org-mode-hook 'variable-pitch-mode)
 #+end_src
 
 Hide emphasis markup:
@@ -603,6 +603,11 @@ Swap the ellipsis out with a downwards triangle/arrow thing:
 #+begin_src emacs-lisp
 (after! org
   (setq org-ellipsis "  "))
+#+end_src
+
+Fix weird arrow thing:
+#+begin_src emacs-lisp
+(setq org-cycle-separator-lines -1)
 #+end_src
 
 Use bullets instead of dashes:

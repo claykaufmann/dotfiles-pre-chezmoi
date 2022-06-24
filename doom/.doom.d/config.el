@@ -329,8 +329,6 @@ It is relative to `org-directory', unless it is absolute.")
 ;; use pretty things for the clocktable
 (setq org-pretty-entities t)
 
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
-
 (custom-theme-set-faces
  'user
  `(org-level-8 ((t)))
@@ -343,26 +341,28 @@ It is relative to `org-directory', unless it is absolute.")
  `(org-level-1 ((t (:height 1.4 :inherit outline-1))))
  `(org-document-title ((t (:height 1.0 :underline nil)))))
 
-(custom-theme-set-faces
- 'user
- '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
- '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
+;; (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
 
-(custom-theme-set-faces
- 'user
- '(org-block ((t (:inherit fixed-pitch))))
- '(org-code ((t (:inherit (shadow fixed-pitch)))))
- '(org-document-info ((t (:foreground "dark orange"))))
- '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-property-value ((t (:inherit fixed-pitch))) t)
- '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
- '(org-verbatim ((t (:inherit variable-pitch)))))
+;; (custom-theme-set-faces
+;;  'user
+;;  '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
+;;  '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
 
-(add-hook 'org-mode-hook 'visual-line-mode)
-(add-hook 'org-mode-hook 'variable-pitch-mode)
+;; (custom-theme-set-faces
+;;  'user
+;;  '(org-block ((t (:inherit fixed-pitch))))
+;;  '(org-code ((t (:inherit (shadow fixed-pitch)))))
+;;  '(org-document-info ((t (:foreground "dark orange"))))
+;;  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+;;  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+;;  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+;;  '(org-property-value ((t (:inherit fixed-pitch))) t)
+;;  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+;;  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+;;  '(org-verbatim ((t (:inherit variable-pitch)))))
+
+;; (add-hook 'org-mode-hook 'visual-line-mode)
+;; (add-hook 'org-mode-hook 'variable-pitch-mode)
 
 (setq org-hide-emphasis-markers t)
 
@@ -392,6 +392,8 @@ It is relative to `org-directory', unless it is absolute.")
 
 (after! org
   (setq org-ellipsis "  "))
+
+(setq org-cycle-separator-lines -1)
 
 (font-lock-add-keywords 'org-mode
                         '(("^ *\\([-]\\) "
