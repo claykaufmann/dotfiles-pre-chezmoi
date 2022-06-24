@@ -2,6 +2,8 @@
 
 # detect OS, as different dotfiles should be installed depending on mac or linux
 # NOTE: This is not setup to work on windows AT ALL for now
+# make config directory if it does not already exist
+mkdir -p ~/.config
 
 if [[ $OSTYPE == 'darwin'* ]]; then
     echo 'Detected macOS operating system, will install mac specific files.'
