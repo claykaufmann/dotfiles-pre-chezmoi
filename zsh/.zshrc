@@ -166,6 +166,10 @@ alias gs='git status'
 # kitty ssh fixes
 alias ssh="kitty +kitten ssh"
 
+# use neovim instead of vim
+alias vi="nvim"
+alias vim="nvim"
+
 # ~~~~~ END ALIASES ~~~~~
 
 export NVM_DIR="$HOME/.nvm"
