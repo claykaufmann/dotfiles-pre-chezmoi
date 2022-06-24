@@ -40,13 +40,14 @@ else
 
     ln -s $SCRIPT_DIR/linux/bspwm ~/.config/bspwm
     ln -s $SCRIPT_DIR/linux/fish ~/.config/fish
-    ln -s $SCRIPT_DIR/linux/picom.conf ~/.config/
+    ln -s $SCRIPT_DIR/linux/picom.conf ~/.config/picom.conf
     ln -s $SCRIPT_DIR/linux/polybar ~/.config/polybar
     ln -s $SCRIPT_DIR/linux/rofi ~/.config/rofi
-    ln -s $SCRIPT_DIR/linux/starship.toml ~/.config/
+    ln -s $SCRIPT_DIR/linux/starship.toml ~/.config/starship.toml
     ln -s $SCRIPT_DIR/linux/sxhkd ~/.config/sxhkd
     ln -s $SCRIPT_DIR/linux/gtk-2.0 ~/.config/gtk-2.0
     ln -s $SCRIPT_DIR/linux/gtk-3.0 ~/.config/gtk-3.0
+    ln -s $SCRIPT_DIR/linux/mimeapps.list ~/.config/mimeapps.list
 fi
 
 echo "Successfully installed dotfiles."
