@@ -27,8 +27,8 @@ xsetroot -cursor_name left_ptr
 setxkbmap -layout us
 
 #Monitor Config
-bspc monitor DP-4 -d 1 2 3 4 5
-bspc monitor DP-2 -d 1 2 3 4 5
+bspc monitor DP-1 -d 1 2 3 4 5
+bspc monitor DP-2 -d 6 7 8 9 10 
 
 #BSPWM Config
 bspc config border_width        0
