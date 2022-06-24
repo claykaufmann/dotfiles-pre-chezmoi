@@ -30,13 +30,25 @@
            (unless (string= "-" project-name)
              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 
+(defun fix-fonts ()
+  (let ((unicode-fonts (list
+                        "faicon"
+                        "Weather Icons"
+                        "github-octicons"
+                        "FontAwesome"
+                        "all-the-icons"
+                        "file-icons"
+                        "Material Icons")))
+    (dolist (fnt unicode-fonts)
+      (when (member fnt (font-family-list))
+        (set-fontset-font t 'unicode fnt nil 'prepend)))))
+
+(add-hook 'after-init-hook 'fix-fonts)
+
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)) ; slant 'normal prob not needed
 
 ;; set relative lines
 (setq display-line-numbers-type 'relative)
-
-;; disable line nums in org mode
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
 
 ;; enable icons
 (setq doom-modeline-icon (display-graphic-p))
@@ -310,9 +322,6 @@ It is relative to `org-directory', unless it is absolute.")
 ;; prompt to resume an active clock
 (setq org-clock-persist-query-resume t)
 
-;; Change tasks to active when clocking in
-;;(setq org-clock-in-switch-to-state "ACTV")
-
 ;; change tasks back to NEXT when clocking out, so it is marked in my agenda in its own area
 (setq org-clock-out-switch-to-state "NEXT")
 
@@ -335,6 +344,8 @@ It is relative to `org-directory', unless it is absolute.")
 ;; use pretty things for the clocktable
 (setq org-pretty-entities t)
 
+(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+
 (custom-theme-set-faces
  'user
  `(org-level-8 ((t)))
@@ -348,22 +359,22 @@ It is relative to `org-directory', unless it is absolute.")
  `(org-document-title ((t (:height 1.0 :underline nil)))))
 
 (custom-theme-set-faces
-   'user
-   '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
-   '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
+ 'user
+ '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
+ '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
 
 (custom-theme-set-faces
-   'user
-   '(org-block ((t (:inherit fixed-pitch))))
-   '(org-code ((t (:inherit (shadow fixed-pitch)))))
-   '(org-document-info ((t (:foreground "dark orange"))))
-   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-   '(org-property-value ((t (:inherit fixed-pitch))) t)
-   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-   '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-   '(org-verbatim ((t (:inherit variable-pitch)))))
+ 'user
+ '(org-block ((t (:inherit fixed-pitch))))
+ '(org-code ((t (:inherit (shadow fixed-pitch)))))
+ '(org-document-info ((t (:foreground "dark orange"))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+ '(org-verbatim ((t (:inherit variable-pitch)))))
 
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'variable-pitch-mode)
@@ -373,12 +384,12 @@ It is relative to `org-directory', unless it is absolute.")
 (defun my/pretty-symbols ()
   (interactive)
   (setq prettify-symbols-alist
-        '(("#+begin_src" . ?)
-          ("#+BEGIN_SRC" . ?)
-          ("#+end_src" . ?)
-          ("#+END_SRC" . ?)
-          ("#+header" . ?)
-          ("#+HEADER" . ?)
+        '(("#+begin_src" . ?)
+          ("#+BEGIN_SRC" . ?)
+          ("#+end_src" . ?)
+          ("#+END_SRC" . ?)
+          ("#+header" . ?)
+          ("#+HEADER" . ?)
           (":PROPERTIES:" . ?)
           (":properties:" . ?)
           (":LOGBOOK:" . ?)
@@ -386,16 +397,32 @@ It is relative to `org-directory', unless it is absolute.")
           ("[ ]" . ?)
           ("[-]" . ?)
           ("[X]" . ?)
-          ("#+BEGIN_QUOTE" . ?)
-          ("#+begin_quote" . ?)
-          ("#+END_QUOTE" . ?)
-          ("#+end_quote" . ?)
+          ("#+BEGIN_QUOTE" . ?)
+          ("#+begin_quote" . ?)
+          ("#+END_QUOTE" . ?)
+          ("#+end_quote" . ?)
           ))
   (prettify-symbols-mode 1))
 (add-hook 'org-mode-hook 'my/pretty-symbols)
 
 (after! org
-  (setq org-ellipsis " ▾ "))
+  (setq org-ellipsis "  "))
+
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([+]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
+
+(use-package org-fancy-priorities
+  :diminish
+  :demand t
+  :defines org-fancy-priorities-list
+  :hook (org-mode . org-fancy-priorities-mode)
+  :config
+  (unless (char-displayable-p ?❗)
+    (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "OPTIONAL"))))
 
 (after! org
   (setq org-capture-templates

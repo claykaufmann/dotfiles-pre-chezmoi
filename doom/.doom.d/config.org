@@ -52,6 +52,24 @@ Better buffer and frame names: (thanks to [[https://tecosaur.github.io/emacs-con
              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 #+end_src
 
+Fix all-the-icons displaying the incorrect icons
+#+begin_src emacs-lisp
+(defun fix-fonts ()
+  (let ((unicode-fonts (list
+                        "faicon"
+                        "Weather Icons"
+                        "github-octicons"
+                        "FontAwesome"
+                        "all-the-icons"
+                        "file-icons"
+                        "Material Icons")))
+    (dolist (fnt unicode-fonts)
+      (when (member fnt (font-family-list))
+        (set-fontset-font t 'unicode fnt nil 'prepend)))))
+
+(add-hook 'after-init-hook 'fix-fonts)
+#+end_src
+
 ** Visual Settings
 My default font is the nerd font variant of Fira Code. Nerd fonts can be found [[https://www.nerdfonts.com][here]]. There are a project by Ryan Oasis, and a quite useful one at that. They allow glyphs to appear, commonly used in Terminal fonts, and other applications.
 #+begin_src emacs-lisp
@@ -62,9 +80,6 @@ I use hybrid line numbers (current line is absolute, lines above and below are r
 #+begin_src emacs-lisp
 ;; set relative lines
 (setq display-line-numbers-type 'relative)
-
-;; disable line nums in org mode
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
 #+end_src
 
 *** Modeline
@@ -494,9 +509,6 @@ The following are a collection of useful options for clocking, most taken from [
 ;; prompt to resume an active clock
 (setq org-clock-persist-query-resume t)
 
-;; Change tasks to active when clocking in
-;;(setq org-clock-in-switch-to-state "ACTV")
-
 ;; change tasks back to NEXT when clocking out, so it is marked in my agenda in its own area
 (setq org-clock-out-switch-to-state "NEXT")
 
@@ -523,6 +535,11 @@ The following are a collection of useful options for clocking, most taken from [
 ** Visuals
 [[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][This article]] has some great tips for customizing org mode to look much better. The following few code blocks take some stuff from that article to make org mode look much better.
 
+Disable line numbers in org mode:
+#+begin_src emacs-lisp
+(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+#+end_src
+
 Make headlines slightly larger:
 #+begin_src emacs-lisp
   (custom-theme-set-faces
@@ -541,25 +558,25 @@ Make headlines slightly larger:
 Set var and fixed pitch fonts:
 #+begin_src emacs-lisp
 (custom-theme-set-faces
-   'user
-   '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
-   '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
+ 'user
+ '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
+ '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
 #+end_src
 
 Style some org elements to look better
 #+begin_src emacs-lisp
 (custom-theme-set-faces
-   'user
-   '(org-block ((t (:inherit fixed-pitch))))
-   '(org-code ((t (:inherit (shadow fixed-pitch)))))
-   '(org-document-info ((t (:foreground "dark orange"))))
-   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-   '(org-property-value ((t (:inherit fixed-pitch))) t)
-   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-   '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-   '(org-verbatim ((t (:inherit variable-pitch)))))
+ 'user
+ '(org-block ((t (:inherit fixed-pitch))))
+ '(org-code ((t (:inherit (shadow fixed-pitch)))))
+ '(org-document-info ((t (:foreground "dark orange"))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+ '(org-verbatim ((t (:inherit variable-pitch)))))
 #+end_src
 
 Add a couple hooks to enable visual line and variable pitch mode in org mode:
@@ -578,12 +595,12 @@ Prettify symbols:
 (defun my/pretty-symbols ()
   (interactive)
   (setq prettify-symbols-alist
-        '(("#+begin_src" . ?)
-          ("#+BEGIN_SRC" . ?)
-          ("#+end_src" . ?)
-          ("#+END_SRC" . ?)
-          ("#+header" . ?)
-          ("#+HEADER" . ?)
+        '(("#+begin_src" . ?)
+          ("#+BEGIN_SRC" . ?)
+          ("#+end_src" . ?)
+          ("#+END_SRC" . ?)
+          ("#+header" . ?)
+          ("#+HEADER" . ?)
           (":PROPERTIES:" . ?)
           (":properties:" . ?)
           (":LOGBOOK:" . ?)
@@ -591,10 +608,10 @@ Prettify symbols:
           ("[ ]" . ?)
           ("[-]" . ?)
           ("[X]" . ?)
-          ("#+BEGIN_QUOTE" . ?)
-          ("#+begin_quote" . ?)
-          ("#+END_QUOTE" . ?)
-          ("#+end_quote" . ?)
+          ("#+BEGIN_QUOTE" . ?)
+          ("#+begin_quote" . ?)
+          ("#+END_QUOTE" . ?)
+          ("#+end_quote" . ?)
           ))
   (prettify-symbols-mode 1))
 (add-hook 'org-mode-hook 'my/pretty-symbols)
@@ -603,7 +620,28 @@ Prettify symbols:
 Swap the ellipsis out with a downwards triangle/arrow thing:
 #+begin_src emacs-lisp
 (after! org
-  (setq org-ellipsis " ▾ "))
+  (setq org-ellipsis "  "))
+#+end_src
+
+Use bullets instead of dashes:
+#+begin_src emacs-lisp
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([+]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package org-fancy-priorities
+  :diminish
+  :demand t
+  :defines org-fancy-priorities-list
+  :hook (org-mode . org-fancy-priorities-mode)
+  :config
+  (unless (char-displayable-p ?❗)
+    (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "OPTIONAL"))))
 #+end_src
 
 ** Templates
