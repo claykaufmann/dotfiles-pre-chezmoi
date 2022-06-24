@@ -163,6 +163,9 @@ alias chgrp='chgrp --preserve-root'
 # git aliases
 alias gs='git status'
 
+# kitty ssh fixes
+alias ssh="kitty +kitten ssh"
+
 # ~~~~~ END ALIASES ~~~~~
 
 export NVM_DIR="$HOME/.nvm"
