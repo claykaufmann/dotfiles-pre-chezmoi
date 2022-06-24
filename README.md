@@ -13,17 +13,17 @@ These are my dotfiles. This repo is used for both mac and linux.
 
 The following section describes each folder and file, and what they are for.
 
-### [Doom Emacs](https://github.com/hlissner/doom-emacs) (`/doom`)
+### [Doom Emacs](https://github.com/hlissner/doom-emacs) (`doom/`)
 
 My doom config is in `doom/.doom.d`. When I get a chance, I want to fix this folder name, but that will require some more in-depth stow config, as well as changing the `DOOMDIR` var in emacs. I'm not going to deal with it for now.
 
 I have been using emacs, and doom emacs for a few months now, and I really like it. Check out `config.org` for the majority of my configuration.
 
-### [Kitty](https://github.com/kovidgoyal/kitty) (`/kitty`)
+### [Kitty](https://github.com/kovidgoyal/kitty) (`kitty/`)
 
 I use kitty as my terminal emulator on both macOS and Linux. It is GPU-accelerated, simple, and works well out of the box.
 
-### [Neovim](https://neovim.io) (`/nvim`)
+### [Neovim](https://neovim.io) (`nvim/`)
 
 I occassionally use neovim for quick text editing in the terminal.
 
