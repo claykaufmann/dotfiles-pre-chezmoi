@@ -16,7 +16,7 @@ super + Escape
 
 # My program Hotkeys
 super + b
-	brave-browser-stable
+	firefox
 
 super + p 
 	flameshot full -p /media/drive/Screenshots
@@ -24,8 +24,9 @@ super + p
 super + shift + p
 	flameshot gui -p /media/drive/Screenshots
 
+# open emacs
 super + d
-	emacs -mm
+	emacsclient --create-frame
 
 #
 # bspwm hotkeys
