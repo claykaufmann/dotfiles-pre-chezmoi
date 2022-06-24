@@ -7,7 +7,7 @@ if [[ $OSTYPE == 'darwin'* ]]; then
     echo 'Detected macOS operating system, will install mac specific files.'
 fi
 
-# symlink stuff needed in both mac/linux
+# get the directory this script was run in for symlink purposes
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 echo "Installing files from the directory $SCRIPT_DIR"
@@ -24,6 +24,7 @@ ln -s $SCRIPT_DIR/kitty ~/.config/kitty
 echo "Symlinking nvim config..."
 ln -s $SCRIPT_DIR/nvim ~/.config/nvim
 
+# if we are on mac, install mac specific dotfiles
 ismac=0
 if [[ $OSTYPE == 'darwin'* ]]; then
     echo 'Installing macOS specific files...'
@@ -33,6 +34,7 @@ if [[ $OSTYPE == 'darwin'* ]]; then
     ln -s $SCRIPT_DIR/mac/.zshrc ~/.zshrc
 
 else
+    # else, install linux specific dotfiles
     ismac=0
     echo "Installing linux specific files..."
 fi
