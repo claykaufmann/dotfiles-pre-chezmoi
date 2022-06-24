@@ -37,6 +37,14 @@ else
     # else, install linux specific dotfiles
     ismac=0
     echo "Installing linux specific files..."
+
+    ln -s $SCRIPT_DIR/linux/bspwm ~/.config/bspwm
+    ln -s $SCRIPT_DIR/linux/fish ~/.config/fish
+    ln -s $SCRIPT_DIR/linux/picom.conf ~/.config/
+    ln -s $SCRIPT_DIR/linux/polybar ~/.config/polybar
+    ln -s $SCRIPT_DIR/linux/rofi ~/.config/rofi
+    ln -s $SCRIPT_DIR/linux/starship.toml ~/.config/
+    ln -s $SCRIPT_DIR/linux/sxhkd ~/.config/sxhkd
 fi
 
 echo "Successfully installed dotfiles."
