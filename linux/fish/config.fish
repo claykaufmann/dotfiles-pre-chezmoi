@@ -4,3 +4,4 @@ end
 starship init fish | source
 
 fish_add_path ~/.emacs.d/bin
+alias ll="ls -la"
