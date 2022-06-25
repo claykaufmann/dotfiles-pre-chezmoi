@@ -50,6 +50,9 @@ else
     ln -s $SCRIPT_DIR/linux/gtk-2.0 ~/.config/gtk-2.0
     ln -s $SCRIPT_DIR/linux/gtk-3.0 ~/.config/gtk-3.0
     ln -s $SCRIPT_DIR/linux/mimeapps.list ~/.config/mimeapps.list
+
+    mkdir -p ~/.config/systemd/user
+    ln -s $SCRIPT_DIR/linux/emacs.service ~/.config/systemd/user/emacs.service
 fi
 
 echo "Successfully installed dotfiles."

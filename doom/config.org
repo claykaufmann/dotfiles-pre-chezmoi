@@ -23,7 +23,7 @@ Make the undo limit much larger, and make jumping through words more exact.
 
 Make emacs open maximized:
 #+begin_src emacs-lisp
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+#(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
 Swap to the new buffer with a normal window split
