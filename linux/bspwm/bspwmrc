@@ -73,3 +73,6 @@ lxpolkit &
 picom --config "$HOME/.config/bspwm/picom.conf"
 bspc desktop -f ^1
 bash ~/Git
+
+# background image
+

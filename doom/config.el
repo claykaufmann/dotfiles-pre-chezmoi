@@ -54,6 +54,9 @@
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "orange"))
 
+;; fix modeline icons on new frame with emacsclient
+(setq doom-modeline-icon t)
+
 (setq doom-theme 'doom-vibrant)
 
 (custom-set-faces!
@@ -796,3 +799,5 @@ Refer to `org-agenda-prefix-format' for more information."
 (custom-set-faces!
   '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
   '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
+
+;(setq doom-modeline-icon (display-graphic-p))

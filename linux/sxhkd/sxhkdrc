@@ -24,9 +24,9 @@ super + p
 super + shift + p
 	flameshot gui -p /media/drive/Screenshots
 
-# open emacs
+# open emacsclient
 super + d
-	emacsclient --create-frame
+	emacsclient -c
 
 #
 # bspwm hotkeys
