@@ -28,6 +28,10 @@ super + shift + p
 super + d
 	emacsclient -c
 
+# change pywal
+super + y
+	~/.dotfiles/linux/walstart.sh
+
 #
 # bspwm hotkeys
 #

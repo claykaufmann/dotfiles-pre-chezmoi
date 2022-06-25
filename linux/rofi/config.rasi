@@ -7,4 +7,9 @@ configuration {
   display-window: "﩯 ";
   display-combi: "  ";
 }
+
 @theme "themes/sidetab-nord.rasi"
+
+@import "~/.cache/wal/colors-rofi-dark"
+
+

@@ -4,7 +4,10 @@
 "$HOME/.config/bspwm/clean" &
 
 # background image
-feh --bg-scale $(find ~/Dropbox/bg-photos -type f | shuf -n 1)
+#feh --bg-scale $(find ~/Dropbox/bg-photos -type f | shuf -n 1)
+
+# start pywal
+~/.dotfiles/linux/walstart.sh
 
 #Start polybar first
 bash ~/.config/polybar/launch.sh
