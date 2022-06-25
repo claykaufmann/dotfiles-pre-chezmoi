@@ -86,7 +86,7 @@ This adds icons to the modeline, increases the max length of the git branch, and
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "orange"))
 
-;; fix modeline icons on new frame with emacsclient
+;; enable modeline icons with emacsclient (technically breaks terminal but no issues for me)
 (setq doom-modeline-icon t)
 #+end_src
 
@@ -1144,8 +1144,4 @@ Add some custom tree sitter fonts
 (custom-set-faces!
   '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
   '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
-#+end_src
-
-#+begin_src emacs-lisp
-;(setq doom-modeline-icon (display-graphic-p))
 #+end_src
