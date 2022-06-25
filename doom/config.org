@@ -338,11 +338,19 @@ Add mappings for poetry:
         :desc "poetry menu" "p" #'poetry)))
 #+end_src
 
-**** Poetry
-Add ~poetry~ to path so poetry.el can find it:
+**** Poetry/conda
+Add ~poetry~ to path so poetry.el can find it, and set anaconda home, depending on system type
 #+begin_src emacs-lisp
-(setenv "PATH" (concat ":/Users/claykaufmann/.local/bin" (getenv "PATH")))
-(add-to-list 'exec-path "/Users/claykaufmann/.local/bin")
+(case system-type
+  ((gnu/linux)
+   (setenv "PATH" (concat ":/home/clayk/.poetry/bin" (getenv "PATH")))
+   (add-to-list 'exec-path "/home/clayk/.poetry/bin")
+   (custom-set-variables
+    '(conda-anaconda-home "/opt/homebrew/Caskroom/miniforge/base")))
+
+  ((darwin)
+   (setenv "PATH" (concat ":/Users/claykaufmann/.local/bin" (getenv "PATH")))
+   (add-to-list 'exec-path "/Users/claykaufmann/.local/bin")))
 #+end_src
 
 Enable poetry tracking mode to automatically enable poetry venvs:
@@ -350,11 +358,8 @@ Enable poetry tracking mode to automatically enable poetry venvs:
 (poetry-tracking-mode)
 #+end_src
 
-**** Conda
 Set conda home directory so we can find conda virtual environments:
 #+begin_src emacs-lisp
-(custom-set-variables
- '(conda-anaconda-home "/opt/homebrew/Caskroom/miniforge/base"))
 #+end_src
 
 Make conda env auto activate: (CURRENTLY NOT WORKING)

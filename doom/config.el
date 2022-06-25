@@ -233,13 +233,20 @@
        (:prefix ("p" . "poetry")
         :desc "poetry menu" "p" #'poetry)))
 
-(setenv "PATH" (concat ":/Users/claykaufmann/.local/bin" (getenv "PATH")))
-(add-to-list 'exec-path "/Users/claykaufmann/.local/bin")
+(case system-type
+  ((gnu/linux)
+   (setenv "PATH" (concat ":/home/clayk/.poetry/bin" (getenv "PATH")))
+   (add-to-list 'exec-path "/home/clayk/.poetry/bin")
+   (custom-set-variables
+    '(conda-anaconda-home "/opt/homebrew/Caskroom/miniforge/base")))
+
+  ((darwin)
+   (setenv "PATH" (concat ":/Users/claykaufmann/.local/bin" (getenv "PATH")))
+   (add-to-list 'exec-path "/Users/claykaufmann/.local/bin")))
 
 (poetry-tracking-mode)
 
-(custom-set-variables
- '(conda-anaconda-home "/opt/homebrew/Caskroom/miniforge/base"))
+
 
 ;; (conda-env-autoactivate-mode t)
 ;; ;; if you want to automatically activate a conda environment on the opening of a file:

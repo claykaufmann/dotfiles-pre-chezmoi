@@ -1,6 +1,14 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    set -Ux PYENV_ROOT $HOME/.pyenv
+    set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
 end
+
+# pyenv setup
+pyenv init - | source
+
+# nvm setup
+nvm use node > /dev/null 2>&1
 
 # add to path
 fish_add_path ~/.emacs.d/bin
@@ -14,3 +22,9 @@ alias dbx="dropbox"
 starship init fish | source
 
 fish_add_path /home/clayk/.spicetify
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /home/clayk/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+
