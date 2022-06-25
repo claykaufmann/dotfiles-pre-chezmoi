@@ -236,13 +236,14 @@
 (case system-type
   ((gnu/linux)
    (setenv "PATH" (concat ":/home/clayk/.poetry/bin" (getenv "PATH")))
-   (add-to-list 'exec-path "/home/clayk/.poetry/bin")
-   (custom-set-variables
-    '(conda-anaconda-home "/opt/homebrew/Caskroom/miniforge/base")))
+   (add-to-list 'exec-path "/home/clayk/.poetry/bin"))
 
   ((darwin)
    (setenv "PATH" (concat ":/Users/claykaufmann/.local/bin" (getenv "PATH")))
-   (add-to-list 'exec-path "/Users/claykaufmann/.local/bin")))
+   (add-to-list 'exec-path "/Users/claykaufmann/.local/bin")
+   (custom-set-variables
+    '(conda-anaconda-home "/opt/homebrew/Caskroom/miniforge/base")
+    )))
 
 (poetry-tracking-mode)
 
