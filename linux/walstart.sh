@@ -1,5 +1,5 @@
 # call pywal
-wal -i $HOME/Dropbox/bg-photos
+wal -i $HOME/Dropbox/bg-photos-linux
 
 # update firefox colors
 pywalfox update
