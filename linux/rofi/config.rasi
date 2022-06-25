@@ -8,7 +8,7 @@ configuration {
   display-combi: "  ";
 }
 
-@theme "themes/sidetab-nord.rasi"
+/**@theme "themes/sidetab-nord.rasi" **/
 
 @import "~/.cache/wal/colors-rofi-dark"
 

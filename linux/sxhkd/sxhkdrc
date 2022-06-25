@@ -25,12 +25,20 @@ super + shift + p
 	flameshot gui -p /media/drive/Screenshots
 
 # open emacsclient
-super + d
+super + z
 	emacsclient -c
+
+# open 1pass
+super + p
+	1password
 
 # change pywal
 super + y
 	~/.dotfiles/linux/walstart.sh
+
+# open spotify
+super + m
+	spotify
 
 #
 # bspwm hotkeys
@@ -63,7 +71,7 @@ super + e
 #
 
 # set the window state
-super + {t,shift + t,s,f}
+super + {a,shift + t,s,d}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags

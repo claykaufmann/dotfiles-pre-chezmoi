@@ -13,3 +13,4 @@ alias dbx="dropbox"
 # add starship
 starship init fish | source
 
+fish_add_path /home/clayk/.spicetify
