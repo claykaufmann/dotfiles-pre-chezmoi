@@ -4,7 +4,7 @@
 "$HOME/.config/bspwm/clean" &
 
 # background image
-feh --bg-fill $(find ~/Dropbox/bg-photos -type f | shuf -n 1)
+feh --bg-scale $(find ~/Dropbox/bg-photos -type f | shuf -n 1)
 
 #Start polybar first
 bash ~/.config/polybar/launch.sh
