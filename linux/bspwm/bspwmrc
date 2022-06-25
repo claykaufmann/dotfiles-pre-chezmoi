@@ -3,6 +3,9 @@
 #Clean lingering programs when reloaded
 "$HOME/.config/bspwm/clean" &
 
+# background image
+feh --bg-fill $(find ~/Dropbox/bg-photos -type f | shuf -n 1)
+
 #Start polybar first
 bash ~/.config/polybar/launch.sh
 
@@ -73,6 +76,4 @@ lxpolkit &
 picom --config "$HOME/.config/bspwm/picom.conf"
 bspc desktop -f ^1
 bash ~/Git
-
-# background image
 
