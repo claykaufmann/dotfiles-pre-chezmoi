@@ -32,6 +32,10 @@
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)) ; slant 'normal prob not needed
 
+;; alt fonts, commented out unless I want to swap to them
+;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15))
+;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
+
 ;; set relative lines
 (setq display-line-numbers-type 'relative)
 
