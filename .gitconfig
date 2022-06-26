@@ -1,6 +1,13 @@
 [user]
 	name = Clay Kaufmann
-	email = claykaufmann@gmail.com
+  email = claykaufmann@gmail.com
+
+[pull]
+  rebase = false
+
+[fetch]
+  prune = true
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
