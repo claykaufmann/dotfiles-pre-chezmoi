@@ -150,8 +150,8 @@ super + {Left,Down,Up,Right}
 	
 # volume control
 XF86AudioLowerVolume
-	amixer set Master 5%-
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
 XF86AudioRaiseVolume
-	amixer set Master 5%+
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
 XF86AudioMute
-        amixer set Master toggle
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
