@@ -406,21 +406,24 @@ It is relative to `org-directory', unless it is absolute.")
 
 (setq org-cycle-separator-lines -1)
 
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([-]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([+]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
+(setq org-superstar-item-bullet-alist
+      '((?* . ?•)
+        (?+ . ?‣)
+        (?- . ?‣)))
 
 (use-package org-fancy-priorities
   :diminish
   :demand t
   :defines org-fancy-priorities-list
-  :hook (org-mode . org-fancy-priorities-mode)
-  :config
-  (unless (char-displayable-p ?❗)
-    (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "OPTIONAL"))))
+  :hook (org-mode . org-fancy-priorities-mode))
+
+(setq org-fancy-priorities-list '((?A . "")
+                                  (?B . "")
+                                  (?C . "")))
+
+(setq org-priority-faces '((?A :foreground "red3")
+                           (?B :foreground "goldenrod2")
+                           (?C :foreground "green4")))
 
 (after! org
   (setq org-capture-templates

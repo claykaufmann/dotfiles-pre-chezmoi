@@ -541,6 +541,9 @@ Make headlines slightly larger:
    `(org-document-title ((t (:height 1.0 :underline nil)))))
 #+end_src
 
+*** Prose Version
+The next three codeblocks make org mode look like normal text, disabled for now as I swapped back to raw text editing.
+
 Disable line numbers in org mode:
 #+begin_src emacs-lisp
 ;; (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
@@ -576,6 +579,7 @@ Add a couple hooks to enable visual line and variable pitch mode in org mode:
 ;; (add-hook 'org-mode-hook 'variable-pitch-mode)
 #+end_src
 
+*** Other visual changes
 Hide emphasis markup:
 #+begin_src emacs-lisp
 (setq org-hide-emphasis-markers t)
@@ -614,30 +618,34 @@ Swap the ellipsis out with a downwards triangle/arrow thing:
   (setq org-ellipsis "  "))
 #+end_src
 
-Fix weird arrow thing:
+Fix issue with the above swap out where icons would break:
 #+begin_src emacs-lisp
 (setq org-cycle-separator-lines -1)
 #+end_src
 
-Use bullets instead of dashes:
+Use org-superstar-mode to replace plain lists with actual unicode bullets:
 #+begin_src emacs-lisp
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([-]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([+]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "◦"))))))
+(setq org-superstar-item-bullet-alist
+      '((?* . ?•)
+        (?+ . ?‣)
+        (?- . ?‣)))
 #+end_src
 
+Set org priority colors and icons:
 #+begin_src emacs-lisp
 (use-package org-fancy-priorities
   :diminish
   :demand t
   :defines org-fancy-priorities-list
-  :hook (org-mode . org-fancy-priorities-mode)
-  :config
-  (unless (char-displayable-p ?❗)
-    (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "OPTIONAL"))))
+  :hook (org-mode . org-fancy-priorities-mode))
+
+(setq org-fancy-priorities-list '((?A . "")
+                                  (?B . "")
+                                  (?C . "")))
+
+(setq org-priority-faces '((?A :foreground "red3")
+                           (?B :foreground "goldenrod2")
+                           (?C :foreground "green4")))
 #+end_src
 
 ** Templates
