@@ -141,7 +141,7 @@ enable-ipc = true
 pseudo-transparency = false
 
 [bar/tray]
-;monitor = DP-4
+monitor = DP-4
 width = 1%
 height = 26
 offset-x = 95%
@@ -327,7 +327,7 @@ label-marked-padding-left = 1
 [module/launcher]
 type = custom/text
 content-background = ${colors.background}
-content-foreground = ${colors.shade17}
+content-foreground = ${colors.foreground}
 content-padding = 1
 click-left = "rofi -show drun"
 content = ""
@@ -691,7 +691,7 @@ label = %{A1:~/.config/polybar/polybar-scripts/cal-popup.sh --popup &:}%time%%{A
 [module/powermenu]
 type = custom/text
 content-background = ${colors.background}
-content-foreground = ${colors.shade17}
+content-foreground = ${colors.foreground}
 content-padding = 1
 click-left = "$HOME/.config/rofi/powermenu/powermenu.sh"
 content = "⏻"
