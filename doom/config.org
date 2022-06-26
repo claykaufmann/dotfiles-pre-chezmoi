@@ -21,9 +21,12 @@ Make the undo limit much larger, and make jumping through words more exact.
 (global-subword-mode 1)
 #+end_src
 
-Make emacs open maximized:
+A couple main window settings, open maximized, and then havbe some opacity:
 #+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+;(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+;(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
 #+end_src
 
 Swap to the new buffer with a normal window split
@@ -54,12 +57,19 @@ Better buffer and frame names: (thanks to [[https://tecosaur.github.io/emacs-con
 
 ** Visual Settings
 My default font is the nerd font variant of Fira Code. Nerd fonts can be found [[https://www.nerdfonts.com][here]]. There are a project by Ryan Oasis, and a quite useful one at that. They allow glyphs to appear, commonly used in Terminal fonts, and other applications.
+
+On my linux computer, I want larger font as it is on a full size desktop, while on my mac I want smaller font:
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)) ; slant 'normal prob not needed
+(case system-type
+  ((gnu/linux)
+   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 17)))
+  ((darwin)
+ (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
+
 
 ;; alt fonts, commented out unless I want to swap to them
-;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15))
-;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
+                                        ;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15))
+                                        ;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
 #+end_src
 
 I use hybrid line numbers (current line is absolute, lines above and below are relative). I might change this at some point, but it is quite nice when in evil mode as it makes it easier to jump to different lines quickly. I also only want line numbers in programming buffers, the following accomplishes this:

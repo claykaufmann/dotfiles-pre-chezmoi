@@ -10,6 +10,9 @@
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+;(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+;(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+
 ;; swap to new window when splitting normally
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
@@ -30,11 +33,16 @@
            (unless (string= "-" project-name)
              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)) ; slant 'normal prob not needed
+(case system-type
+  ((gnu/linux)
+   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 17)))
+  ((darwin)
+ (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
+
 
 ;; alt fonts, commented out unless I want to swap to them
-;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15))
-;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
+                                        ;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15))
+                                        ;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
 
 ;; set relative lines
 (setq display-line-numbers-type 'relative)
