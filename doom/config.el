@@ -10,8 +10,8 @@
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-;(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-;(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
 
 ;; swap to new window when splitting normally
 (setq evil-vsplit-window-right t
@@ -35,7 +35,7 @@
 
 (case system-type
   ((gnu/linux)
-   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 17)))
+   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18)))
   ((darwin)
  (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
 

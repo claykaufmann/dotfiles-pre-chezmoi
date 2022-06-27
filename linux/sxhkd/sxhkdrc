@@ -19,14 +19,14 @@ super + b
 	firefox
 
 super + p 
-	flameshot full -p /media/drive/Screenshots
+	flameshot full -p ~/screenshots/
 
 super + shift + p
-	flameshot gui -p /media/drive/Screenshots
+	flameshot gui -p ~/screenshots/
 
 # open emacsclient
 super + z
-	emacsclient -c
+	emacsclient -c --alternate-editor="" -a
 
 # open 1pass
 super + p

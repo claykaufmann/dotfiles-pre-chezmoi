@@ -25,8 +25,8 @@ A couple main window settings, open maximized, and then havbe some opacity:
 #+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-;(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-;(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
 #+end_src
 
 Swap to the new buffer with a normal window split
@@ -62,7 +62,7 @@ On my linux computer, I want larger font as it is on a full size desktop, while 
 #+begin_src emacs-lisp
 (case system-type
   ((gnu/linux)
-   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 17)))
+   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18)))
   ((darwin)
  (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
 
