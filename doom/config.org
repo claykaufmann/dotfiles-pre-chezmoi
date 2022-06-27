@@ -424,9 +424,9 @@ Disable caching to stop an error:
 Disable company in org (it causes a ton of slowdown)
 If there is a way to allow company without causing slowdown, I'll do that here. This was taken from [[https://stackoverflow.com/questions/34652692/how-to-turn-off-company-mode-in-org-mode/34660219][this stackoverflow link]].
 #+begin_src emacs-lisp
-(defun jpk/org-mode-hook ()
-  (company-mode -1))
-(add-hook 'org-mode-hook 'jpk/org-mode-hook)
+;; (defun jpk/org-mode-hook ()
+;;   (company-mode -1))
+;; (add-hook 'org-mode-hook 'jpk/org-mode-hook)
 #+end_src
 
 *** Latex Settings

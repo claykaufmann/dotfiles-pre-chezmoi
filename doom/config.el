@@ -280,9 +280,9 @@
 
 (setq org-element-use-cache nil)
 
-(defun jpk/org-mode-hook ()
-  (company-mode -1))
-(add-hook 'org-mode-hook 'jpk/org-mode-hook)
+;; (defun jpk/org-mode-hook ()
+;;   (company-mode -1))
+;; (add-hook 'org-mode-hook 'jpk/org-mode-hook)
 
 (setq org-latex-create-formula-image-program 'imagemagick)
 
