@@ -171,8 +171,7 @@ set updatetime=250
 
 " from .vimrc
 " line numbers
-set nonumber
-set relativenumber
+set number relativenumber
 set nocursorline
 set scrolloff=15
 
