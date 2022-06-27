@@ -26,7 +26,7 @@ super + shift + p
 
 # open emacsclient
 super + z
-	emacsclient -c --alternate-editor="" -a
+	emacsclient -c --alternate-editor="" -a "emacs --daemon"
 
 # open 1pass
 super + p
