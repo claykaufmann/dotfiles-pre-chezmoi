@@ -156,9 +156,9 @@ alias gs='git status'
 # kitty ssh fixes
 alias ssh="kitty +kitten ssh"
 
-# use neovim instead of vim
+# use neovim instead of vim when typing vi
+# if neovim goes wrong, then we can still use vim with "vim"
 alias vi="nvim"
-alias vim="nvim"
 
 # ~~~~~ END ALIASES ~~~~~
 
