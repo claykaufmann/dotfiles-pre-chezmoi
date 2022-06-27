@@ -51,6 +51,9 @@ else
     ln -s $SCRIPT_DIR/linux/gtk-3.0 ~/.config/gtk-3.0
     ln -s $SCRIPT_DIR/linux/mimeapps.list ~/.config/mimeapps.list
     ln -s $SCRIPT_DIR/linux/spicetify ~/.config/spicetify
+
+    # this is needed to set the SXHKD shell, so it runs faster
+    ln -s $SCRIPT_DIR/linux/.profile ~/.profile
  fi
 
 echo "Successfully installed dotfiles."
