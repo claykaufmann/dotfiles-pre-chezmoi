@@ -3,7 +3,7 @@
 #Clean lingering programs when reloaded
 "$HOME/.config/bspwm/clean" &
 
-# background image
+# background image (not needed if pywal being used)
 #feh --bg-scale $(find ~/Dropbox/bg-photos -type f | shuf -n 1)
 
 # start pywal
@@ -70,7 +70,6 @@ bspc rule -a spotify desktop='^7'
 #Auto-Start
 bspc desktop -f ^6
 sleep 0.50
-urxvtc & # this may not be needed
 lxpolkit &
 picom --config "$HOME/.config/bspwm/picom.conf"
 bspc desktop -f ^1
