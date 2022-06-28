@@ -65,7 +65,6 @@ bspc config external_rules_command "$HOME/.config/bspwm/external_rules.sh"
 #bspc rule -a Brave-browser desktop='^1' follow=on
 #bspc rule -a variety state=floating
 #bspc rule -a Chromium desktop='^2'
-bspc rule -a spotify desktop='^7'
 
 #Auto-Start
 bspc desktop -f ^6
