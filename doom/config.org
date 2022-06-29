@@ -21,7 +21,7 @@ Make the undo limit much larger, and make jumping through words more exact.
 (global-subword-mode 1)
 #+end_src
 
-A couple main window settings, open maximized, and then havbe some opacity:
+A couple main window settings, open maximized, and then have some opacity:
 #+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
