@@ -15,9 +15,7 @@ The following section describes each folder and file, and what they are for.
 
 ### [Doom Emacs](https://github.com/hlissner/doom-emacs) (`doom/`)
 
-My doom config is in `doom/.doom.d`. When I get a chance, I want to fix this folder name, but that will require some more in-depth stow config, as well as changing the `DOOMDIR` var in emacs. I'm not going to deal with it for now.
-
-I have been using emacs, and doom emacs for a few months now, and I really like it. Check out `config.org` for the majority of my configuration.
+My doom config is in `doom/`. I have been using emacs, and doom emacs for a few months now, and I really like it. Check out `config.org` for the majority of my configuration.
 
 NOTE: This doom emacs configuration currently only really works on mac, some work needs to be done on it in order to make it cross-compatible with linux. For now, hesitate from installing this on linux, issues will arise!
 
