@@ -10,9 +10,11 @@
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-;; once picom is fixed, this should be modified to only activate on darwin
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+;; enable transparency in emacs in darwin only (linux picom handles transparency)
+(case system-type
+  ((darwin)
+   (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+   (add-to-list 'default-frame-alist '(alpha . (92 . 90)))))
 
 ;; swap to new window when splitting normally
 (setq evil-vsplit-window-right t

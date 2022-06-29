@@ -1,5 +1,5 @@
 " Author: Clay Kaufmann
-" Previous  vimrc can be found in the file tempvimrc
+" This is not used anymore, as I use nvim
 
 " BEGIN VIMRC
 "
