@@ -47,4 +47,4 @@ I use [oh-my-zsh](https://ohmyz.sh) to bootstrap my zsh config, and then I use [
 
 ### `linux/`
 
-In here are my linux specific dotfiles. NOTE: These are not complete at all, and are currently not installed with the setup script as I need to do more configuration with them.
+In here are my linux specific dotfiles. NOTE: this folder is a work in progress, and should be treated as such. While it does currently work, it by no means may work in a different environment.
