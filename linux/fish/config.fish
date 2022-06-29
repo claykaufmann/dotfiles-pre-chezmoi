@@ -19,8 +19,8 @@ alias ll="ls -la"
 alias dbx="dropbox"
 
 # map vi to nvim, faster than typing vim
-# also if something goes wrong with nvim, can easily use vim
 alias vi="nvim"
+alias vim="nvim"
 
 # add starship
 starship init fish | source

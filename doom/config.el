@@ -10,8 +10,11 @@
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+;; enable transparency in emacs in darwin only (linux picom handles transparency)
+(case system-type
+  ((darwin)
+   (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
+   (add-to-list 'default-frame-alist '(alpha . (92 . 90)))))
 
 ;; swap to new window when splitting normally
 (setq evil-vsplit-window-right t
