@@ -10,8 +10,9 @@
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+;; once picom is fixed, this should be modified to only activate on darwin
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; swap to new window when splitting normally
 (setq evil-vsplit-window-right t
@@ -280,9 +281,9 @@
 
 (setq org-element-use-cache nil)
 
-;; (defun jpk/org-mode-hook ()
-;;   (company-mode -1))
-;; (add-hook 'org-mode-hook 'jpk/org-mode-hook)
+(defun jpk/org-mode-hook ()
+  (company-mode -1))
+(add-hook 'org-mode-hook 'jpk/org-mode-hook)
 
 (setq org-latex-create-formula-image-program 'imagemagick)
 

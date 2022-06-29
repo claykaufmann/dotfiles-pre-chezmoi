@@ -25,8 +25,9 @@ A couple main window settings, open maximized, and then havbe some opacity:
 #+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-(set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-(add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+;; once picom is fixed, this should be modified to only activate on darwin
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 #+end_src
 
 Swap to the new buffer with a normal window split
@@ -36,7 +37,7 @@ Swap to the new buffer with a normal window split
       evil-split-window-below t)
 #+end_src
 
-Better buffer and frame names: (thanks to [[https://tecosaur.github.io/emacs-config/config.html][tecosaur!]] )
+Better buffer and frame names: (thanks to [[https://tecosaur.github.io/emacs-config/config.html][tecosaur!]])
 #+begin_src emacs-lisp
 (setq doom-fallback-buffer-name "► Emacs"
       +doom-dashboard-name "► Doom")
@@ -424,9 +425,9 @@ Disable caching to stop an error:
 Disable company in org (it causes a ton of slowdown)
 If there is a way to allow company without causing slowdown, I'll do that here. This was taken from [[https://stackoverflow.com/questions/34652692/how-to-turn-off-company-mode-in-org-mode/34660219][this stackoverflow link]].
 #+begin_src emacs-lisp
-;; (defun jpk/org-mode-hook ()
-;;   (company-mode -1))
-;; (add-hook 'org-mode-hook 'jpk/org-mode-hook)
+(defun jpk/org-mode-hook ()
+  (company-mode -1))
+(add-hook 'org-mode-hook 'jpk/org-mode-hook)
 #+end_src
 
 *** Latex Settings
