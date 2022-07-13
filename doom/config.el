@@ -40,7 +40,7 @@
   ((gnu/linux)
    (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18)))
   ((darwin)
- (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
+   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
 
 
 ;; alt fonts, commented out unless I want to swap to them
@@ -284,8 +284,11 @@
 (setq org-element-use-cache nil)
 
 (defun jpk/org-mode-hook ()
-  (company-mode -1))
-(add-hook 'org-mode-hook 'jpk/org-mode-hook)
+  (company-mode 0))
+
+(case system-type
+  ((darwin)
+   (add-hook 'org-mode-hook 'jpk/org-mode-hook)))
 
 (setq org-latex-create-formula-image-program 'imagemagick)
 
@@ -296,11 +299,13 @@
       (:prefix ("n")
        (:desc "render latex" "L" #'org-latex-preview)))
 
-(defvar vulpea-capture-inbox-file
-  (format "~/Dropbox/Terrapin/inbox-%s.org" (system-name))
-  "The path to the inbox file.
-
-It is relative to `org-directory', unless it is absolute.")
+(case system-type
+  ((darwin)
+   (defvar vulpea-capture-inbox-file
+     "~/Dropbox/Terrapin/inbox-MBP.org"))
+  ((gnu/linux)
+   (defvar vulpea-capture-inbox-file
+     "~/Dropbox/Terrapin/inbox-hinox.org")))
 
 (after! org
   (setq org-todo-keywords
@@ -479,6 +484,10 @@ It is relative to `org-directory', unless it is absolute.")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
          :unnarrowed t)
 
+        ("t" "thought" plain "* Links\n\n* Thought\n\n* References\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: thought")
+         :unnarrowed t)
+
         ;; the project template, used for projects WITH A DEADLINE
         ("p" "project" plain "* Overview\n\n* Tasks\n** TODO Set project name and deadline\n\n* Ideas\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: project")
@@ -533,6 +542,10 @@ It is relative to `org-directory', unless it is absolute.")
 
         ("w" "weekly goal setting" plain "* Goals\n\n* Action Items\n"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: weeklygoals")
+         :unnarrowed t)
+
+        ("f" "person" plain "* General\nName:\nFrom:\nBirthday:\nCurrent Address:\n\n\n* Relatives\n\n\n* Thoughts\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: people")
          :unnarrowed t)
 
         ;; an assignment note, used for tracking progress on an assignment

@@ -67,7 +67,7 @@ On my linux computer, I want larger font as it is on a full size desktop, while 
   ((gnu/linux)
    (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18)))
   ((darwin)
- (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
+   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
 
 
 ;; alt fonts, commented out unless I want to swap to them
@@ -425,11 +425,14 @@ Disable caching to stop an error:
 #+end_src
 
 Disable company in org (it causes a ton of slowdown)
-If there is a way to allow company without causing slowdown, I'll do that here. This was taken from [[https://stackoverflow.com/questions/34652692/how-to-turn-off-company-mode-in-org-mode/34660219][this stackoverflow link]].
+If there is a way to allow company without causing slowdown, I'll do that here. This was taken from [[https://stackoverflow.com/questions/34652692/how-to-turn-off-company-mode-in-org-mode/34660219][this stackoverflow link]]. This should only activate on darwin, where emacs is non-native
 #+begin_src emacs-lisp
 (defun jpk/org-mode-hook ()
-  (company-mode -1))
-(add-hook 'org-mode-hook 'jpk/org-mode-hook)
+  (company-mode 0))
+
+(case system-type
+  ((darwin)
+   (add-hook 'org-mode-hook 'jpk/org-mode-hook)))
 #+end_src
 
 *** Latex Settings
@@ -456,11 +459,13 @@ For all inbox-related things, I use a vulpea function that is based on the syste
 
 Set the vulpea inbox file (from [[https://d12frosted.io/posts/2021-05-21-task-management-with-roam-vol7.html][thanks to Boris Buliga]]) based on system name:
 #+begin_src emacs-lisp
-(defvar vulpea-capture-inbox-file
-  (format "~/Dropbox/Terrapin/inbox-%s.org" (system-name))
-  "The path to the inbox file.
-
-It is relative to `org-directory', unless it is absolute.")
+(case system-type
+  ((darwin)
+   (defvar vulpea-capture-inbox-file
+     "~/Dropbox/Terrapin/inbox-MBP.org"))
+  ((gnu/linux)
+   (defvar vulpea-capture-inbox-file
+     "~/Dropbox/Terrapin/inbox-hinox.org")))
 #+end_src
 
 ** Task Management
@@ -703,13 +708,16 @@ I use org capture templates purely with an inbox file. I keep an inbox file per 
 
 For almost everything else, I used some org roam templates for creating new notes in org roam. There are a couple overlaps, used when I already know where I will be categorizing something.
 
-*** TODO make these come from actual org files
 #+begin_src emacs-lisp
 (setq org-roam-capture-templates
       ;; the default template for a note
       '(("d" "default" plain
          "%?"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+         :unnarrowed t)
+
+        ("t" "thought" plain "* Links\n\n* Thought\n\n* References\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: thought")
          :unnarrowed t)
 
         ;; the project template, used for projects WITH A DEADLINE
@@ -766,6 +774,10 @@ For almost everything else, I used some org roam templates for creating new note
 
         ("w" "weekly goal setting" plain "* Goals\n\n* Action Items\n"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: weeklygoals")
+         :unnarrowed t)
+
+        ("f" "person" plain "* General\nName:\nFrom:\nBirthday:\nCurrent Address:\n\n\n* Relatives\n\n\n* Thoughts\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: people")
          :unnarrowed t)
 
         ;; an assignment note, used for tracking progress on an assignment
