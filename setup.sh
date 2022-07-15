@@ -1,7 +1,8 @@
 #! /bin/bash
 
 # detect OS, as different dotfiles should be installed depending on mac or linux
-# NOTE: This is not setup to work on windows AT ALL for now
+# NOTE: This is not setup to work on windows AT ALL, as I don't really code on it
+
 # make config directory if it does not already exist
 mkdir -p ~/.config
 
@@ -27,17 +28,14 @@ echo "Symlinking nvim config..."
 ln -s $SCRIPT_DIR/nvim ~/.config/nvim
 
 # if we are on mac, install mac specific dotfiles
-ismac=0
 if [[ $OSTYPE == 'darwin'* ]]; then
     echo 'Installing macOS specific files...'
-    ismac=1
     echo "Symlinking .zshrc..."
     # if this is on mac, we need to symlink specific stuff, namely zsh in the mac folder
     ln -s $SCRIPT_DIR/mac/.zshrc ~/.zshrc
 
 else
     # else, install linux specific dotfiles
-    ismac=0
     echo "Installing linux specific files..."
 
     ln -s $SCRIPT_DIR/linux/bspwm ~/.config/bspwm
