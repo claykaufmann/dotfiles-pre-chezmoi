@@ -55,7 +55,7 @@ bspwm is my window manager of choice. It is a tiling window manager.
 
 I use fish as my shell on linux, a highly configurable, batteries-included shell. It has great defaults, and good autocomplete. The core config file is `config.fish`
 
-#### gtk (`gtk-2.0/`, `gtk-3.0/`) - theming
+#### [gtk](https://www.gtk.org) (`gtk-2.0/`, `gtk-3.0/`) - theming
 
 These are my GTK config files, they just set UI themes.
 
