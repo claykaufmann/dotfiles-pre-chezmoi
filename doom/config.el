@@ -456,13 +456,13 @@
           ;; basic note entry
           ("n" "note" entry
            (file vulpea-capture-inbox-file)
-           "* Note: %? :note:\n%U\n"
+           "* %?  :note:\n%U\n"
            :kill-buffer t)
 
           ;; basic thought entry
           ("h" "thought" entry
            (file vulpea-capture-inbox-file)
-           "* Thought: %? :thought:\n%U\n"
+           "* %?  :thought:\n%U\n"
            :kill-buffer t)
 
           ;; hw assignment entry for quick logging of hw assignments when needed (can always refile later)
@@ -474,7 +474,7 @@
           ;; basic meeting note entry
           ("m" "meeting note" entry
            (file vulpea-capture-inbox-file)
-           "* Meeting: %? :meeting:\n%U\n"
+           "* %?  :meeting:\n%U\n"
            :kill-buffer t))))
 
 (setq org-roam-capture-templates
