@@ -69,7 +69,7 @@ I use polybar as my status bar. In here are polybar scripts, my `launch.sh`, and
 
 #### [rofi](https://github.com/davatorium/rofi) (`rofi/`) - window switcher / app launcher
 
-An alternative to dmenu, rofi is my window switcher of choice. Core config file is `config.rasI`
+An alternative to dmenu, rofi is my window switcher of choice. Core config file is `config.rasi`
 
 #### [spicetify](https://spicetify.app) (`spicetify/`) - spotify modifier
 
