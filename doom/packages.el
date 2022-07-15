@@ -55,7 +55,7 @@
 (package! tree-sitter)
 (package! tree-sitter-langs)
 
-(unpin! org-roam) ; this line causes issues with doom upgrade, comment out to upgrade doom
+(unpin! org-roam)
 (package! org-roam-ui)
 
 (package! peep-dired)
