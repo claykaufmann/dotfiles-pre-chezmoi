@@ -1,4 +1,2 @@
 # Linux Specific Dotfiles
-In here are my linux specific dotfiles. They are correctly installed with the general install script found in the main directory.
-
-## NOTE: I don't think the picom.conf in the main folder here is necessary, testing will be needed.
+In here are my linux specific dotfiles. They are correctly installed with the general install script found in the main directory. NOTE: Issues are possible, be careful when cloning this if you don't know what these files do! Not all files within the `.dotfiles/linux` folder are symlinked into the `$HOME` directory when running `setup.sh`, this is on purpose, as not all of the files need to be copied over.
