@@ -276,10 +276,15 @@
 
 (setq diary-file "~/Dropbox/Org-Utils/diary")
 
+(defun python-diary ()
+  (insert (shell-command-to-string (format "python ~/Dropbox/Org-Utils/mac_diary_active.py"))))
+
+;(add-hook 'org-agenda-mode-hook 'python-diary)
+
 (setq org-directory "~/Dropbox/Terrapin/")
 (setq org-roam-directory "~/Dropbox/Terrapin/")
 
-(add-hook 'org-mode-hook (lambda () (electric-indent-mode -1)))
+;(add-hook 'org-mode-hook (lambda () (electric-indent-mode -1)))
 
 (setq org-element-use-cache nil)
 
@@ -481,7 +486,7 @@
       ;; the default template for a note
       '(("d" "default" plain
          "%?"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: ")
          :unnarrowed t)
 
         ("t" "thought" plain "* Links\n\n* Thought\n\n* References\n"

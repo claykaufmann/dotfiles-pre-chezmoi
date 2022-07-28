@@ -404,6 +404,15 @@ Set the file location:
 (setq diary-file "~/Dropbox/Org-Utils/diary")
 #+end_src
 
+Run calendar diary script everytime agenda is opened for the first session:
+This does not work currently, as Emacs does not have permission to access the calendar :(
+#+begin_src emacs-lisp
+(defun python-diary ()
+  (insert (shell-command-to-string (format "python ~/Dropbox/Org-Utils/mac_diary_active.py"))))
+
+;(add-hook 'org-agenda-mode-hook 'python-diary)
+#+end_src
+
 * Org Config
 Org is the main reason why I swapped to Emacs, thanks to my good friend Ben. Many of my org settings have been collected from other places, I will try to remember to cite where I can.
 
@@ -415,8 +424,9 @@ Set org and org-roam directories
 #+end_src
 
 Disable electric mode in org mode to stop this weird indent issue I am having:
+Turned this off for now as I overall prefer it, the issue is if I double return, it goes to 2 indents down, which is really funky.
 #+begin_src emacs-lisp
-(add-hook 'org-mode-hook (lambda () (electric-indent-mode -1)))
+;(add-hook 'org-mode-hook (lambda () (electric-indent-mode -1)))
 #+end_src
 
 Disable caching to stop an error:
@@ -713,7 +723,7 @@ For almost everything else, I used some org roam templates for creating new note
       ;; the default template for a note
       '(("d" "default" plain
          "%?"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: ")
          :unnarrowed t)
 
         ("t" "thought" plain "* Links\n\n* Thought\n\n* References\n"
