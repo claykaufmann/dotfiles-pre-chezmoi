@@ -154,11 +154,12 @@ alias nowdate='date +"%d-%m-%Y"'
 alias gs='git status'
 
 # kitty ssh fixes
-alias ssh="kitty +kitten ssh"
+alias kssh="kitty +kitten ssh"
 
 # use neovim instead of vim when typing vi
 # if neovim goes wrong, then we can still use vim with "vim"
 alias vi="nvim"
+alias vim="nvim"
 
 # ~~~~~ END ALIASES ~~~~~
 
