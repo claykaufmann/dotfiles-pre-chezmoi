@@ -284,7 +284,7 @@
 (setq org-directory "~/Dropbox/Terrapin/")
 (setq org-roam-directory "~/Dropbox/Terrapin/")
 
-;(add-hook 'org-mode-hook (lambda () (electric-indent-mode -1)))
+(add-hook 'org-mode-hook (lambda () (electric-indent-mode -1)))
 
 (setq org-element-use-cache nil)
 
