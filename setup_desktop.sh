@@ -2,6 +2,7 @@
 
 # detect OS, as different dotfiles should be installed depending on mac or linux
 # NOTE: This is not setup to work on windows AT ALL, as I don't really code on it
+# further: this is only used on my personal mac and linux DESKTOP environments
 
 # make config directory if it does not already exist
 mkdir -p ~/.config
