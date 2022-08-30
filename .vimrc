@@ -82,6 +82,9 @@ Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 colorscheme onedark
+" the following line fixes transparency bg issues
+hi normal ctermbg=none
+
 "----------------------------
 " MAPPINGS
 nnoremap <C-L> :nohl<CR><C-L>
