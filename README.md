@@ -2,12 +2,19 @@
 
 These are my dotfiles. This repo is used for both mac and linux.
 
-## Installation
+## Installation on desktop environments
 
 1. Clone this repo
 2. cd into the repo
-3. Run `chmod u+x setup.sh` in order to give executable permissions on the setup script
-4. Run `./setup.sh` to install dotfiles. NOTE: Remember to read scripts before running them to understand what they do.
+3. Run `chmod u+x setup_desktop.sh` in order to give executable permissions on the setup script
+4. Run `./setup_desktop.sh` to install dotfiles. NOTE: Remember to read scripts before running them to understand what they do.
+
+## Installation on server environments
+
+1. Clone repo
+2. `cd` into the repo
+3. Run `chmod u+x setup_server.sh` to give executable permissions on setup script
+4. Run `./setup_server.sh` to install the dotfiles
 
 ## Folder Structure
 
@@ -98,3 +105,15 @@ This just starts up dropbox, its called with a `systemctl` call upon my computer
 #### `mimeapps.list`
 
 Sets some default applications.
+
+### `server-linux/`
+
+In here, I keep just a couple simple files that allow a cleaner terminal on server applications. 
+
+#### `.bashrc`
+
+A super basic bashrc file that just sets a couple aliases, and sets starship as the prompt. Starship is not automatically setup, keep this in mind, so the starship prompt line is commented out.
+
+#### `.vimrc`
+
+A basic vimrc that sets colorscheme, some sensible defaults, and a couple plugins with vim-plug
