@@ -21,6 +21,12 @@ nmap <leader>w :w!<cr>
 " set escape to be jk 
 imap jk <Esc>
 
+" set esc key to hide search highlight
+nnoremap <esc> :noh<return><esc>
+
+" disable bell
+set visualbell
+set t_vb=
 
 "------- COLORS -------
 if has('syntax')
