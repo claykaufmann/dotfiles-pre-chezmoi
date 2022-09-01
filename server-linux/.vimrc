@@ -2,7 +2,6 @@
 " This is not used anymore, as I use nvim
 
 " BEGIN VIMRC
-"
 
 set nocompatible
 
