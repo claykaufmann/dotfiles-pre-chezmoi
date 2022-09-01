@@ -1,23 +1,28 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# extend timeout to fix nvm error
+command_timeout = 800
+
+# ~~~~~~~ CORE FORMAT ~~~~~~~
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# increase command timeout because of slow nvm
-command_timeout = 800
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character] # The name of the module we are configuring is "character"
-success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
-
+# ~~~~~~~ INDIVIDUAL FORMATS ~~~~~~~~
 [aws]
 symbol = "  "
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+disabled=true
 
 [c]
 symbol = " "
 format = '\[[$symbol($version(-$name))]($style)\]'
+
+# the beginning prompt char
+[character]
+success_symbol = "[➜](green)"
+error_symbol = "[✖](bold red) "
 
 [cmake]
 format = '\[[$symbol($version)]($style)\]'
