@@ -28,12 +28,19 @@ ln -s $SCRIPT_DIR/kitty ~/.config/kitty
 echo "Symlinking nvim config..."
 ln -s $SCRIPT_DIR/nvim ~/.config/nvim
 
+echo "Symlinking starship config..."
+ln -s $SCRIPT_DIR/starship.toml ~/.config/starship.toml
+
 # if we are on mac, install mac specific dotfiles
 if [[ $OSTYPE == 'darwin'* ]]; then
     echo 'Installing macOS specific files...'
     echo "Symlinking .zshrc..."
     # if this is on mac, we need to symlink specific stuff, namely zsh in the mac folder
     ln -s $SCRIPT_DIR/mac/.zshrc ~/.zshrc
+
+    echo "Symlinking sheldon zshrc config..."
+
+    ln -s $SCRIPT_DIR/mac/sheldon ~/.sheldon
 
 else
     # else, install linux specific dotfiles
@@ -44,7 +51,6 @@ else
     ln -s $SCRIPT_DIR/linux/picom.conf ~/.config/picom.conf
     ln -s $SCRIPT_DIR/linux/polybar ~/.config/polybar
     ln -s $SCRIPT_DIR/linux/rofi ~/.config/rofi
-    ln -s $SCRIPT_DIR/linux/starship.toml ~/.config/starship.toml
     ln -s $SCRIPT_DIR/linux/sxhkd ~/.config/sxhkd
     ln -s $SCRIPT_DIR/linux/gtk-2.0 ~/.config/gtk-2.0
     ln -s $SCRIPT_DIR/linux/gtk-3.0 ~/.config/gtk-3.0
