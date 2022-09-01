@@ -9,6 +9,11 @@ These are my dotfiles. This repo is used for both mac and linux.
 3. Run `chmod u+x setup_desktop.sh` in order to give executable permissions on the setup script
 4. Run `./setup_desktop.sh` to install dotfiles. NOTE: Remember to read scripts before running them to understand what they do.
 
+### Mac extras
+
+Because I am no longer using `oh-my-zsh`, some extras need to be installed to get zsh to work correctly.
+1. `brew install sheldon`
+
 ## Installation on server environments
 
 1. Clone repo
