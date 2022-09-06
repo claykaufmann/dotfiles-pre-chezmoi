@@ -11,7 +11,7 @@ alias l.='ls --color=auto -d .* '
 
 # git
 alias gs='git status'
-alias g = 'git'
+alias g='git'
 
 # kitty ssh fixes
 alias kssh="kitty +kitten ssh"
