@@ -510,8 +510,8 @@
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: class:classname")
          :unnarrowed t)
 
-        ;; class note template, used for a class note for a class
-        ("c" "class-note" plain "* Overview\n\n\n* Notes\n\n\n* References"
+        ;; lecture note template, used for a lecture note for a class
+        ("c" "lecturenote" plain "* Overview\n\n\n* Notes\n\n\n* References"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: classnote:classname:class")
          :unnarrowed t)
 
@@ -556,7 +556,7 @@
          :unnarrowed t)
 
         ;; an assignment note, used for tracking progress on an assignment
-        ("a" "assignment" plain "* Overview\n\n* Tasks\n** TODO add assignment name and deadline\n\n* Notes\n\n* Ideas\n\n* Resources\n\n* ASGN assignmentname"
+        ("a" "assignment" plain "* Overview\n\n* Tasks\n\n\n* Notes\n\n* Ideas\n\n* Resources\n"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: assignment:class")
          :unnarrowed t)))
 
