@@ -81,6 +81,11 @@ I use hybrid line numbers (current line is absolute, lines above and below are r
 (setq display-line-numbers-type 'relative)
 #+end_src
 
+Set a blinking cursor:
+#+begin_src emacs-lisp
+(setq blink-cursor-mode 1)
+#+end_src
+
 *** Modeline
 This adds icons to the modeline, increases the max length of the git branch, and makes flycheck show more information.
 #+begin_src emacs-lisp

@@ -50,6 +50,8 @@
 ;; set relative lines
 (setq display-line-numbers-type 'relative)
 
+(setq blink-cursor-mode 1)
+
 ;; enable icons
 (setq doom-modeline-icon (display-graphic-p))
 (setq doom-modeline-major-mode-icon t)
