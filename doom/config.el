@@ -304,6 +304,8 @@
       (:prefix ("n")
        (:desc "render latex" "L" #'org-latex-preview)))
 
+(setq org-latex-create-formula-image-program 'dvisvgm)
+
 (case system-type
   ((darwin)
    (defvar vulpea-capture-inbox-file
