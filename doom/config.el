@@ -50,6 +50,10 @@
                                         ;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15))
                                         ;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
 
+(custom-set-faces!
+ `(variable-pitch :family "ETBookOT" :height 180 :weight normal)
+ `(fixed-pitch :family "FiraCode Nerd Font Mono" :height 150))
+
 ;; set relative lines
 (setq display-line-numbers-type 'relative)
 
@@ -415,18 +419,6 @@
 ;;           (lambda ()
 ;;             (load-theme 'doom-one-light)))
 
-(custom-theme-set-faces
-'user
- '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight normal))))
- '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
-
-;; (setq header-line-format " ")
-
-(lambda () (progn
-  (setq left-margin-width 2)
-  (setq right-margin-width 2)
-  (set-window-buffer nil (current-buffer))))
-
 (custom-set-faces!
   `(org-level-5 :height 1.05)
 
@@ -438,28 +430,28 @@
 
   `(org-level-1 :height 1.5 :weight bold :foreground ,(doom-color 'fg)))
 
-(custom-theme-set-faces
- 'user
- '(org-code ((t (:inherit (shadow fixed-pitch))))))
+(custom-set-faces!
+  '(org-code :inherit (shadow fixed-pitch)))
 
-(custom-theme-set-faces
- 'user
- '(org-document-title ((t (:height 1.3
-                           :underline nil
-                           :inherit variable-pitch
-                           )))))
+(custom-set-faces!
+  ; doc info keyword i.e #+TITLE:
+  `(org-document-info-keyword :inherit (shadow fixed-pitch))
 
-(custom-theme-set-faces
- 'user
- '(org-block ((t (:inherit fixed-pitch))))
- '(org-document-info ((t (:foreground "dark orange"))))
- '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-property-value ((t (:inherit fixed-pitch))) t)
- '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
- '(org-verbatim ((t (:inherit variable-pitch)))))
+  ; for tags
+  `(org-tag :slant italic)
+
+  ; org doc title
+  `(org-document-title :height 1.3 :underline nil :inherit variable-pitch))
+
+(custom-set-faces!
+ `(org-block :inherit fixed-pitch)
+ `(org-document-info :foreground "dark orange")
+ `(org-indent :inherit (org-hide fixed-pitch))
+ `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+ `(org-property-value :inherit fixed-pitch)
+ `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+ `(org-table :inherit fixed-pitch :foreground "#83a598")
+ `(org-verbatim :inherit variable-pitch))
 
 (setq org-hide-emphasis-markers t)
 

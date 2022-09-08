@@ -81,6 +81,13 @@ On my linux computer, I want larger font as it is on a full size desktop, while 
                                         ;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
 #+end_src
 
+Set var and fixed pitch fonts, this is mainly for Org mode:
+#+begin_src emacs-lisp
+(custom-set-faces!
+ `(variable-pitch :family "ETBookOT" :height 180 :weight normal)
+ `(fixed-pitch :family "FiraCode Nerd Font Mono" :height 150))
+#+end_src
+
 I use hybrid line numbers (current line is absolute, lines above and below are relative). I might change this at some point, but it is quite nice when in evil mode as it makes it easier to jump to different lines quickly. I also only want line numbers in programming buffers, the following accomplishes this:
 #+begin_src emacs-lisp
 ;; set relative lines
@@ -619,7 +626,7 @@ The following code block is for using non-prose org mode. All it does is slightl
 #+end_src
 
 *** Prose Version
-The next few codeblocks make org mode look like a normal word processor.
+The next few codeblocks make org mode look like a normal word processor, and in general much fancier. It is an alternative to the above.
 
 **** General
 Disable line numbers in org mode:
@@ -643,24 +650,6 @@ Set the theme to be different when typing org: (disabled for now, kind of annoyi
 ;;             (load-theme 'doom-one-light)))
 #+end_src
 
-Set var and fixed pitch fonts:
-#+begin_src emacs-lisp
-(custom-theme-set-faces
-'user
- '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight normal))))
- '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
-#+end_src
-
-Add spacing around the buffer:
-#+begin_src emacs-lisp
-;; (setq header-line-format " ")
-
-(lambda () (progn
-  (setq left-margin-width 2)
-  (setq right-margin-width 2)
-  (set-window-buffer nil (current-buffer))))
-#+end_src
-
 **** Specific font changes
 The following code blocks make specific org fonts look different.
 
@@ -680,34 +669,34 @@ Modify headings to look better:
 
 Modify codeblocks:
 #+begin_src emacs-lisp
-(custom-theme-set-faces
- 'user
- '(org-code ((t (:inherit (shadow fixed-pitch))))))
+(custom-set-faces!
+  '(org-code :inherit (shadow fixed-pitch)))
 #+end_src
 
 Modify doc title and meta keywords:
 #+begin_src emacs-lisp
-(custom-theme-set-faces
- 'user
- '(org-document-title ((t (:height 1.3
-                           :underline nil
-                           :inherit variable-pitch
-                           )))))
+(custom-set-faces!
+  ; doc info keyword i.e #+TITLE:
+  `(org-document-info-keyword :inherit (shadow fixed-pitch))
+
+  ; for tags
+  `(org-tag :slant italic)
+
+  ; org doc title
+  `(org-document-title :height 1.3 :underline nil :inherit variable-pitch))
 #+end_src
 
 Style some org elements to look better
 #+begin_src emacs-lisp
-(custom-theme-set-faces
- 'user
- '(org-block ((t (:inherit fixed-pitch))))
- '(org-document-info ((t (:foreground "dark orange"))))
- '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-property-value ((t (:inherit fixed-pitch))) t)
- '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
- '(org-verbatim ((t (:inherit variable-pitch)))))
+(custom-set-faces!
+ `(org-block :inherit fixed-pitch)
+ `(org-document-info :foreground "dark orange")
+ `(org-indent :inherit (org-hide fixed-pitch))
+ `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+ `(org-property-value :inherit fixed-pitch)
+ `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+ `(org-table :inherit fixed-pitch :foreground "#83a598")
+ `(org-verbatim :inherit variable-pitch))
 #+end_src
 
 *** Other visual changes
