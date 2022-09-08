@@ -83,7 +83,7 @@ I use hybrid line numbers (current line is absolute, lines above and below are r
 
 Set a blinking cursor:
 #+begin_src emacs-lisp
-(setq blink-cursor-mode 1)
+(blink-cursor-mode 1)
 #+end_src
 
 *** Modeline
@@ -469,9 +469,35 @@ Add a keybinding for rendering latex:
        (:desc "render latex" "L" #'org-latex-preview)))
 #+end_src
 
-Set ~dvisvgm~ as the renderer:
+Set ~dvisvgm~ as the renderer (fixes low res latex previews in org buffers):
 #+begin_src emacs-lisp
 (setq org-latex-create-formula-image-program 'dvisvgm)
+#+end_src
+
+Set the output export directory to be different (from [[http://rwx.io/posts/org-export-configurations/][this article]]):
+#+begin_src emacs-lisp
+;; set directory name
+(defvar org-export-output-directory "exports" "prefix of directory used for org-mode export")
+
+;; modify export function to use directory name
+(defadvice org-export-output-file-name (before org-add-export-dir activate)
+  "Modifies org-export to place exported files in a different directory"
+  (when (not pub-dir)
+    (setq pub-dir (concat org-export-output-directory))
+    (when (not (file-directory-p pub-dir))
+      (make-directory pub-dir))))
+#+end_src
+
+Leaving this modified version here in case I want to swap to different directories for different export types:
+#+begin_src emacs-lisp
+;; (defvar org-export-output-directory-prefix "export_" "prefix of directory used for org-mode export")
+
+;; (defadvice org-export-output-file-name (before org-add-export-dir activate)
+;;   "Modifies org-export to place exported files in a different directory"
+;;   (when (not pub-dir)
+;;     (setq pub-dir (concat org-export-output-directory-prefix (substring extension 1)))
+;;     (when (not (file-directory-p pub-dir))
+;;       (make-directory pub-dir))))
 #+end_src
 
 *** Inbox
@@ -542,9 +568,6 @@ The following are a collection of useful options for clocking, most taken from [
 ;; prompt to resume an active clock
 (setq org-clock-persist-query-resume t)
 
-;; change tasks back to NEXT when clocking out, so it is marked in my agenda in its own area
-(setq org-clock-out-switch-to-state "NEXT")
-
 ;; Save clock data and state changes and notes in the LOGBOOK drawer
 (setq org-clock-into-drawer t)
 
@@ -581,6 +604,11 @@ Make headlines slightly larger:
    `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
    `(org-level-1 ((t (:height 1.4 :inherit outline-1))))
    `(org-document-title ((t (:height 1.0 :underline nil)))))
+#+end_src
+
+Fix image width:
+#+begin_src emacs-lisp
+(setq org-image-actual-width (list 600))
 #+end_src
 
 *** Prose Version

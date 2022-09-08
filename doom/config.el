@@ -50,7 +50,7 @@
 ;; set relative lines
 (setq display-line-numbers-type 'relative)
 
-(setq blink-cursor-mode 1)
+(blink-cursor-mode 1)
 
 ;; enable icons
 (setq doom-modeline-icon (display-graphic-p))
@@ -308,6 +308,26 @@
 
 (setq org-latex-create-formula-image-program 'dvisvgm)
 
+;; set directory name
+(defvar org-export-output-directory "exports" "prefix of directory used for org-mode export")
+
+;; modify export function to use directory name
+(defadvice org-export-output-file-name (before org-add-export-dir activate)
+  "Modifies org-export to place exported files in a different directory"
+  (when (not pub-dir)
+    (setq pub-dir (concat org-export-output-directory))
+    (when (not (file-directory-p pub-dir))
+      (make-directory pub-dir))))
+
+;; (defvar org-export-output-directory-prefix "export_" "prefix of directory used for org-mode export")
+
+;; (defadvice org-export-output-file-name (before org-add-export-dir activate)
+;;   "Modifies org-export to place exported files in a different directory"
+;;   (when (not pub-dir)
+;;     (setq pub-dir (concat org-export-output-directory-prefix (substring extension 1)))
+;;     (when (not (file-directory-p pub-dir))
+;;       (make-directory pub-dir))))
+
 (case system-type
   ((darwin)
    (defvar vulpea-capture-inbox-file
@@ -347,9 +367,6 @@
 ;; prompt to resume an active clock
 (setq org-clock-persist-query-resume t)
 
-;; change tasks back to NEXT when clocking out, so it is marked in my agenda in its own area
-(setq org-clock-out-switch-to-state "NEXT")
-
 ;; Save clock data and state changes and notes in the LOGBOOK drawer
 (setq org-clock-into-drawer t)
 
@@ -380,6 +397,8 @@
  `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
  `(org-level-1 ((t (:height 1.4 :inherit outline-1))))
  `(org-document-title ((t (:height 1.0 :underline nil)))))
+
+(setq org-image-actual-width (list 600))
 
 ;; (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
 
