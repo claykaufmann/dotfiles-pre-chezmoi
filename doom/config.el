@@ -8,13 +8,16 @@
 ;; iterate through camelCase words
 (global-subword-mode 1)
 
+(setq +zen-text-scale 0)
+
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; enable transparency in emacs in darwin only (linux picom handles transparency)
 (case system-type
   ((darwin)
    (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-   (add-to-list 'default-frame-alist '(alpha . (92 . 90)))))
+   (add-to-list 'default-frame-alist '(alpha . (92 . 90))
+   )))
 
 ;; swap to new window when splitting normally
 (setq evil-vsplit-window-right t
@@ -75,9 +78,6 @@
 (setq doom-modeline-icon t)
 
 (setq doom-theme 'doom-vibrant)
-
-(custom-set-faces!
-  '(org-headline-done :foreground "#565761"))
 
 (custom-set-faces!
   '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
@@ -386,42 +386,80 @@
 ;; use pretty things for the clocktable
 (setq org-pretty-entities t)
 
-(custom-theme-set-faces
- 'user
- `(org-level-8 ((t)))
- `(org-level-7 ((t)))
- `(org-level-6 ((t)))
- `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
- `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
- `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
- `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
- `(org-level-1 ((t (:height 1.4 :inherit outline-1))))
- `(org-document-title ((t (:height 1.0 :underline nil)))))
-
 (setq org-image-actual-width (list 600))
 
-;; (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+(custom-set-faces!
+  '(org-headline-done :foreground "#565761" :strike-through t))
 
 ;; (custom-theme-set-faces
 ;;  'user
-;;  '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
-;;  '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
+;;  `(org-level-8 ((t)))
+;;  `(org-level-7 ((t)))
+;;  `(org-level-6 ((t)))
+;;  `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
+;;  `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
+;;  `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
+;;  `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
+;;  `(org-level-1 ((t (:height 1.4 :inherit outline-1 :weight bold))))
+;;  `(org-document-title ((t (:height 1.0 :underline nil)))))
 
-;; (custom-theme-set-faces
-;;  'user
-;;  '(org-block ((t (:inherit fixed-pitch))))
-;;  '(org-code ((t (:inherit (shadow fixed-pitch)))))
-;;  '(org-document-info ((t (:foreground "dark orange"))))
-;;  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-;;  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-;;  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-;;  '(org-property-value ((t (:inherit fixed-pitch))) t)
-;;  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-;;  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-;;  '(org-verbatim ((t (:inherit variable-pitch)))))
+(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
 
-;; (add-hook 'org-mode-hook 'visual-line-mode)
-;; (add-hook 'org-mode-hook 'variable-pitch-mode)
+(add-hook 'org-mode-hook 'visual-line-mode)
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+
+;; enable zen mode
+(add-hook 'org-mode-hook '+zen/toggle)
+
+;; (add-hook 'org-mode-hook
+;;           (lambda ()
+;;             (load-theme 'doom-one-light)))
+
+(custom-theme-set-faces
+'user
+ '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight normal))))
+ '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
+
+;; (setq header-line-format " ")
+
+(lambda () (progn
+  (setq left-margin-width 2)
+  (setq right-margin-width 2)
+  (set-window-buffer nil (current-buffer))))
+
+(custom-set-faces!
+  `(org-level-5 :height 1.05)
+
+  '(org-level-4 :height 1.05)
+
+  `(org-level-3 :height 1.15 :weight bold)
+
+  `(org-level-2 :height 1.3 :weight bold :slant italic)
+
+  `(org-level-1 :height 1.5 :weight bold :foreground ,(doom-color 'fg)))
+
+(custom-theme-set-faces
+ 'user
+ '(org-code ((t (:inherit (shadow fixed-pitch))))))
+
+(custom-theme-set-faces
+ 'user
+ '(org-document-title ((t (:height 1.3
+                           :underline nil
+                           :inherit variable-pitch
+                           )))))
+
+(custom-theme-set-faces
+ 'user
+ '(org-block ((t (:inherit fixed-pitch))))
+ '(org-document-info ((t (:foreground "dark orange"))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+ '(org-verbatim ((t (:inherit variable-pitch)))))
 
 (setq org-hide-emphasis-markers t)
 
@@ -866,3 +904,8 @@ Refer to `org-agenda-prefix-format' for more information."
 (custom-set-faces!
   '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
   '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
+
+(setq writeroom-mode-line t)
+
+(after! git-gutter
+  (setq git-gutter:disabled-modes '(org-mode)))

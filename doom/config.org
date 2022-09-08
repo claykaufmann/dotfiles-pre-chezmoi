@@ -1,6 +1,6 @@
 #+TITLE: Emacs Config
+#+author: Clay Kaufmann
 #+filetags: config:emacs
-
 This is my personal emacs config, for use with doom emacs! If you can, open this up in emacs, github does not do a great job of rendering org files.
 
 * General Config
@@ -21,6 +21,11 @@ Make the undo limit much larger, and make jumping through words more exact.
 (global-subword-mode 1)
 #+end_src
 
+Stop text-scaling in zen mode:
+#+begin_src emacs-lisp
+(setq +zen-text-scale 0)
+#+end_src
+
 A couple main window settings, open maximized, and then have some opacity:
 #+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
@@ -29,7 +34,8 @@ A couple main window settings, open maximized, and then have some opacity:
 (case system-type
   ((darwin)
    (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
-   (add-to-list 'default-frame-alist '(alpha . (92 . 90)))))
+   (add-to-list 'default-frame-alist '(alpha . (92 . 90))
+   )))
 #+end_src
 
 Swap to the new buffer with a normal window split
@@ -116,12 +122,6 @@ This adds icons to the modeline, increases the max length of the git branch, and
 I switch themes consistently. The ones I use the most are ~doom-vibrant~, ~doom-gruvbox~, ~doom-material~, ~doom-dracula~, ~doom-palenight~, and ~doom-solarized-light~
 #+begin_src emacs-lisp
 (setq doom-theme 'doom-vibrant)
-#+end_src
-
-Make a few theme-dependent changes
-#+begin_src emacs-lisp
-(custom-set-faces!
-  '(org-headline-done :foreground "#565761"))
 #+end_src
 
 Add some custom tree sitter colors for better looking highlighting:
@@ -589,64 +589,125 @@ The following are a collection of useful options for clocking, most taken from [
 #+end_src
 
 ** Visuals
-[[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][This article]] has some great tips for customizing org mode to look much better. The following few code blocks take some stuff from that article to make org mode look much better.
-
-Make headlines slightly larger:
-#+begin_src emacs-lisp
-  (custom-theme-set-faces
-   'user
-   `(org-level-8 ((t)))
-   `(org-level-7 ((t)))
-   `(org-level-6 ((t)))
-   `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
-   `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
-   `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
-   `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
-   `(org-level-1 ((t (:height 1.4 :inherit outline-1))))
-   `(org-document-title ((t (:height 1.0 :underline nil)))))
-#+end_src
+[[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][This article]] has some great tips for customizing org mode to look much better. The following few code blocks take some stuff from that article to make org mode look much better. I also took stuff from [[https://lepisma.xyz/2017/10/28/ricing-org-mode/][ricing up Org mode]].
 
 Fix image width:
 #+begin_src emacs-lisp
 (setq org-image-actual-width (list 600))
 #+end_src
 
-*** Prose Version
-The next three codeblocks make org mode look like normal text, disabled for now as I swapped back to raw text editing.
+Set the done headline text:
+#+begin_src emacs-lisp
+(custom-set-faces!
+  '(org-headline-done :foreground "#565761" :strike-through t))
+#+end_src
 
+*** Non-prose version
+The following code block is for using non-prose org mode. All it does is slightly modify headlines and the doc title.
+#+begin_src emacs-lisp
+;; (custom-theme-set-faces
+;;  'user
+;;  `(org-level-8 ((t)))
+;;  `(org-level-7 ((t)))
+;;  `(org-level-6 ((t)))
+;;  `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
+;;  `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
+;;  `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
+;;  `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
+;;  `(org-level-1 ((t (:height 1.4 :inherit outline-1 :weight bold))))
+;;  `(org-document-title ((t (:height 1.0 :underline nil)))))
+#+end_src
+
+*** Prose Version
+The next few codeblocks make org mode look like a normal word processor.
+
+**** General
 Disable line numbers in org mode:
 #+begin_src emacs-lisp
-;; (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+#+end_src
+
+Enable variable pitch fonts in org, and a couple other hooks for cleaning up the UI:
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'visual-line-mode)
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+
+;; enable zen mode
+(add-hook 'org-mode-hook '+zen/toggle)
+#+end_src
+
+Set the theme to be different when typing org: (disabled for now, kind of annoying)
+#+begin_src emacs-lisp
+;; (add-hook 'org-mode-hook
+;;           (lambda ()
+;;             (load-theme 'doom-one-light)))
 #+end_src
 
 Set var and fixed pitch fonts:
 #+begin_src emacs-lisp
-;; (custom-theme-set-faces
-;;  'user
-;;  '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :weight normal))))
-;;  '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
+(custom-theme-set-faces
+'user
+ '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight normal))))
+ '(fixed-pitch ((t ( :family "FiraCode Nerd Font Mono" :height 150)))))
+#+end_src
+
+Add spacing around the buffer:
+#+begin_src emacs-lisp
+;; (setq header-line-format " ")
+
+(lambda () (progn
+  (setq left-margin-width 2)
+  (setq right-margin-width 2)
+  (set-window-buffer nil (current-buffer))))
+#+end_src
+
+**** Specific font changes
+The following code blocks make specific org fonts look different.
+
+Modify headings to look better:
+#+begin_src emacs-lisp
+(custom-set-faces!
+  `(org-level-5 :height 1.05)
+
+  '(org-level-4 :height 1.05)
+
+  `(org-level-3 :height 1.15 :weight bold)
+
+  `(org-level-2 :height 1.3 :weight bold :slant italic)
+
+  `(org-level-1 :height 1.5 :weight bold :foreground ,(doom-color 'fg)))
+#+end_src
+
+Modify codeblocks:
+#+begin_src emacs-lisp
+(custom-theme-set-faces
+ 'user
+ '(org-code ((t (:inherit (shadow fixed-pitch))))))
+#+end_src
+
+Modify doc title and meta keywords:
+#+begin_src emacs-lisp
+(custom-theme-set-faces
+ 'user
+ '(org-document-title ((t (:height 1.3
+                           :underline nil
+                           :inherit variable-pitch
+                           )))))
 #+end_src
 
 Style some org elements to look better
 #+begin_src emacs-lisp
-;; (custom-theme-set-faces
-;;  'user
-;;  '(org-block ((t (:inherit fixed-pitch))))
-;;  '(org-code ((t (:inherit (shadow fixed-pitch)))))
-;;  '(org-document-info ((t (:foreground "dark orange"))))
-;;  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-;;  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-;;  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-;;  '(org-property-value ((t (:inherit fixed-pitch))) t)
-;;  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-;;  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
-;;  '(org-verbatim ((t (:inherit variable-pitch)))))
-#+end_src
-
-Add a couple hooks to enable visual line and variable pitch mode in org mode:
-#+begin_src emacs-lisp
-;; (add-hook 'org-mode-hook 'visual-line-mode)
-;; (add-hook 'org-mode-hook 'variable-pitch-mode)
+(custom-theme-set-faces
+ 'user
+ '(org-block ((t (:inherit fixed-pitch))))
+ '(org-document-info ((t (:foreground "dark orange"))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+ '(org-verbatim ((t (:inherit variable-pitch)))))
 #+end_src
 
 *** Other visual changes
@@ -1235,4 +1296,17 @@ Add some custom tree sitter fonts
 (custom-set-faces!
   '(tree-sitter-hl-face:property :inherit tree-sitter-hl-face:type.super :slant italic)
   '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
+#+end_src
+
+** Zen Mode
+Keep the modeline in zen mode, needed for pomodoro timer and org clock
+#+begin_src emacs-lisp
+(setq writeroom-mode-line t)
+#+end_src
+
+** Git Gutter
+Disable git-gutter in org mode:
+#+begin_src emacs-lisp
+(after! git-gutter
+  (setq git-gutter:disabled-modes '(org-mode)))
 #+end_src
