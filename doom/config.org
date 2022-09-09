@@ -643,6 +643,28 @@ Enable variable pitch fonts in org, and a couple other hooks for cleaning up the
 (add-hook 'org-mode-hook '+zen/toggle)
 #+end_src
 
+Disable ~hl-line-mode~ in org mode:
+(if any hl-line-mode issues arise, check here!)
+#+begin_src emacs-lisp
+;; disable global hl-line-mode
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+
+;; add hl-line-mode hook to other modes besides org
+(add-hook! (prog-mode tex-mode conf-mode special-mode) #'hl-line-mode)
+#+end_src
+
+Set the cursor to always be a bar:
+Disabled for now as it was annoying...
+#+begin_src emacs-lisp
+;; (add-hook 'org-mode-hook
+;;           (lambda()
+;;             (setq-local evil-normal-state-cursor 'bar)))
+
+;; (add-hook 'org-mode-hook
+;;           (lambda()
+;;             (setq-local evil-emacs-state-cursor 'bar)))
+#+end_src
+
 Set the theme to be different when typing org: (disabled for now, kind of annoying)
 #+begin_src emacs-lisp
 ;; (add-hook 'org-mode-hook
@@ -686,18 +708,27 @@ Modify doc title and meta keywords:
   `(org-document-title :height 1.3 :underline nil :inherit variable-pitch))
 #+end_src
 
+Modify org-verbatim to highlight:
+#+begin_src emacs-lisp
+
+#+end_src
+
 Style some org elements to look better
 #+begin_src emacs-lisp
 (custom-set-faces!
- `(org-block :inherit fixed-pitch)
- `(org-document-info :foreground "dark orange")
- `(org-indent :inherit (org-hide fixed-pitch))
- `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
- `(org-property-value :inherit fixed-pitch)
- `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
- `(org-table :inherit fixed-pitch :foreground "#83a598")
- `(org-verbatim :inherit variable-pitch))
+  `(org-block :inherit fixed-pitch)
+  `(org-document-info :foreground "dark orange")
+  `(org-indent :inherit (org-hide fixed-pitch))
+  `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+  `(org-property-value :inherit fixed-pitch)
+  `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+  `(org-table :inherit fixed-pitch :foreground "#83a598")
+  `(org-verbatim :inherit variable-pitch))
 #+end_src
+
+=test=
+hello
+~hello~
 
 *** Other visual changes
 Hide emphasis markup:

@@ -415,6 +415,20 @@
 ;; enable zen mode
 (add-hook 'org-mode-hook '+zen/toggle)
 
+;; disable global hl-line-mode
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+
+;; add hl-line-mode hook to other modes besides org
+(add-hook! (prog-mode tex-mode conf-mode special-mode) #'hl-line-mode)
+
+;; (add-hook 'org-mode-hook
+;;           (lambda()
+;;             (setq-local evil-normal-state-cursor 'bar)))
+
+;; (add-hook 'org-mode-hook
+;;           (lambda()
+;;             (setq-local evil-emacs-state-cursor 'bar)))
+
 ;; (add-hook 'org-mode-hook
 ;;           (lambda ()
 ;;             (load-theme 'doom-one-light)))
@@ -443,15 +457,17 @@
   ; org doc title
   `(org-document-title :height 1.3 :underline nil :inherit variable-pitch))
 
+
+
 (custom-set-faces!
- `(org-block :inherit fixed-pitch)
- `(org-document-info :foreground "dark orange")
- `(org-indent :inherit (org-hide fixed-pitch))
- `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
- `(org-property-value :inherit fixed-pitch)
- `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
- `(org-table :inherit fixed-pitch :foreground "#83a598")
- `(org-verbatim :inherit variable-pitch))
+  `(org-block :inherit fixed-pitch)
+  `(org-document-info :foreground "dark orange")
+  `(org-indent :inherit (org-hide fixed-pitch))
+  `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+  `(org-property-value :inherit fixed-pitch)
+  `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+  `(org-table :inherit fixed-pitch :foreground "#83a598")
+  `(org-verbatim :inherit variable-pitch))
 
 (setq org-hide-emphasis-markers t)
 
