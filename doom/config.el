@@ -37,26 +37,25 @@
            (unless (string= "-" project-name)
              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 
-;; alt options to fixed:
+;; fixed font options: (SAVED HERE FOR EASE OF USE)
 ;; JetBrainsMono Nerd Font Mono
 ;; CaskaydiaCove Nerd Font Mono
-(defvar fixed-fam "FiraCode Nerd Font Mono")
-(defvar var-fam "ETBookOT")
-
-(setq doom-unicode-font (font-spec :family fixed-fam))
+;; FiraCode Nerd Font Mono
+(defvar clay-fixed-pitch-face "JetBrainsMono Nerd Font Mono")
+(defvar clay-var-pitch-face "ETBookOT")
 
 (case system-type
   ((gnu/linux)
-   (setq doom-font (font-spec :family fixed-fam :size 18)
-         doom-big-font (font-spec :family fixed-fam :size 36)
-         doom-variable-pitch-font (font-spec :family var-fam :size 20 :height 180)
-         doom-serif-font (font-spec :family var-fam :size 20 :height 180)))
+   (setq doom-font (font-spec :family clay-fixed-pitch-face :size 18)
+         doom-big-font (font-spec :family clay-fixed-pitch-face :size 36)
+         doom-variable-pitch-font (font-spec :family clay-var-pitch-face :size 20 :height 180)
+         doom-serif-font (font-spec :family clay-var-pitch-face :size 20 :height 180)))
 
   ((darwin)
-   (setq doom-font (font-spec :family fixed-fam :size 15)
-         doom-big-font (font-spec :family fixed-fam :size 24)
-         doom-variable-pitch-font (font-spec :family var-fam :size 18 :height 180)
-         doom-serif-font (font-spec :family var-fam :size 18 :height 180)
+   (setq doom-font (font-spec :family clay-fixed-pitch-face :size 15)
+         doom-big-font (font-spec :family clay-fixed-pitch-face :size 24)
+         doom-variable-pitch-font (font-spec :family clay-var-pitch-face :size 18 :height 180)
+         doom-serif-font (font-spec :family clay-var-pitch-face :size 18 :height 180)
          )))
 
 ;; set relative lines
@@ -410,12 +409,10 @@
       (setq-local display-line-numbers nil
             visual-fill-column-width 70
             )
-      (visual-line-mode 1)
       (variable-pitch-mode 1)
       (hl-line-mode 0)))
   (defun +zen-nonprose-org-h ()
     (when (eq major-mode 'org-mode)
-      (visual-line-mode 0)
       (variable-pitch-mode 0)
       (hl-line-mode 1)))
   (pushnew! writeroom--local-variables
