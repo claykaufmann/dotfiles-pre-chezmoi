@@ -8,8 +8,6 @@
 ;; iterate through camelCase words
 (global-subword-mode 1)
 
-(setq +zen-text-scale 0)
-
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; enable transparency in emacs in darwin only (linux picom handles transparency)
@@ -39,20 +37,27 @@
            (unless (string= "-" project-name)
              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 
+;; alt options to fixed:
+;; JetBrainsMono Nerd Font Mono
+;; CaskaydiaCove Nerd Font Mono
+(defvar fixed-fam "FiraCode Nerd Font Mono")
+(defvar var-fam "ETBookOT")
+
+(setq doom-unicode-font (font-spec :family fixed-fam))
+
 (case system-type
   ((gnu/linux)
-   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18)))
+   (setq doom-font (font-spec :family fixed-fam :size 18)
+         doom-big-font (font-spec :family fixed-fam :size 36)
+         doom-variable-pitch-font (font-spec :family var-fam :size 20 :height 180)
+         doom-serif-font (font-spec :family var-fam :size 20 :height 180)))
+
   ((darwin)
-   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
-
-
-;; alt fonts, commented out unless I want to swap to them
-                                        ;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15))
-                                        ;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
-
-(custom-set-faces!
- `(variable-pitch :family "ETBookOT" :height 180 :weight normal)
- `(fixed-pitch :family "FiraCode Nerd Font Mono" :height 150))
+   (setq doom-font (font-spec :family fixed-fam :size 15)
+         doom-big-font (font-spec :family fixed-fam :size 24)
+         doom-variable-pitch-font (font-spec :family var-fam :size 18 :height 180)
+         doom-serif-font (font-spec :family var-fam :size 18 :height 180)
+         )))
 
 ;; set relative lines
 (setq display-line-numbers-type 'relative)
@@ -395,31 +400,32 @@
 (custom-set-faces!
   '(org-headline-done :foreground "#565761" :strike-through t))
 
-;; (custom-theme-set-faces
-;;  'user
-;;  `(org-level-8 ((t)))
-;;  `(org-level-7 ((t)))
-;;  `(org-level-6 ((t)))
-;;  `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
-;;  `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
-;;  `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
-;;  `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
-;;  `(org-level-1 ((t (:height 1.4 :inherit outline-1 :weight bold))))
-;;  `(org-document-title ((t (:height 1.0 :underline nil)))))
+(defvar +zen-serif-p t)
 
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+(defvar +zen-org-starhide t)
 
-(add-hook 'org-mode-hook 'visual-line-mode)
-(add-hook 'org-mode-hook 'variable-pitch-mode)
+(after! writeroom-mode
+  (defun +zen-prose-org-h ()
+    (when (eq major-mode 'org-mode)
+      (setq-local display-line-numbers nil
+            visual-fill-column-width 70
+            )
+      (visual-line-mode 1)
+      (variable-pitch-mode 1)
+      (hl-line-mode 0)))
+  (defun +zen-nonprose-org-h ()
+    (when (eq major-mode 'org-mode)
+      (visual-line-mode 0)
+      (variable-pitch-mode 0)
+      (hl-line-mode 1)))
+  (pushnew! writeroom--local-variables
+            'display-line-numbers
+            'visual-fill-column-width)
+  (add-hook 'writeroom-mode-enable-hook #'+zen-prose-org-h)
+  (add-hook 'writeroom-mode-disable-hook #'+zen-nonprose-org-h))
 
-;; enable zen mode
+;; enable zen mode on org mode start
 (add-hook 'org-mode-hook '+zen/toggle)
-
-;; disable global hl-line-mode
-(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
-
-;; add hl-line-mode hook to other modes besides org
-(add-hook! (prog-mode tex-mode conf-mode special-mode) #'hl-line-mode)
 
 ;; (add-hook 'org-mode-hook
 ;;           (lambda()
@@ -434,40 +440,55 @@
 ;;             (load-theme 'doom-one-light)))
 
 (custom-set-faces!
-  `(org-level-5 :height 1.05)
+  ;; ~~~~~~ HEADERS ~~~~~~
+  `(org-level-5 :height 1.05 :inherit outline-5)
 
-  '(org-level-4 :height 1.05)
+  '(org-level-4 :height 1.05 :inherit outline-4)
 
-  `(org-level-3 :height 1.15 :weight bold)
+  `(org-level-3 :height 1.15 :inherit outline-3 :weight bold)
 
-  `(org-level-2 :height 1.3 :weight bold :slant italic)
+  `(org-level-2 :height 1.3 :inherit outline-2 :weight bold :slant italic)
 
-  `(org-level-1 :height 1.5 :weight bold :foreground ,(doom-color 'fg)))
+  `(org-level-1 :height 1.5 :inherit outline-1 :weight bold :foreground ,(doom-color 'fg))
 
-(custom-set-faces!
-  '(org-code :inherit (shadow fixed-pitch)))
+  ;; ~~~~~~ CODE ~~~~~~
+  ;; inline code
+  '(org-code :inherit (shadow fixed-pitch))
 
-(custom-set-faces!
-  ; doc info keyword i.e #+TITLE:
+  ;; org-verbatim (alternative to org-code)
+  `(org-verbatim :inherit (shadow fixed-pitch))
+
+  ;; ~~~~~~ META TAGS ~~~~~~
+  ;; keyword for doc title, i.e #+TITLE
   `(org-document-info-keyword :inherit (shadow fixed-pitch))
 
-  ; for tags
+  ;; for tags
   `(org-tag :slant italic)
 
-  ; org doc title
-  `(org-document-title :height 1.3 :underline nil :inherit variable-pitch))
+  ;; org doc title
+  `(org-document-title :height 1.3 :underline nil :inherit variable-pitch)
+  `(org-document-info :foreground "dark orange" :inherit variable-pitch)
 
-
-
-(custom-set-faces!
-  `(org-block :inherit fixed-pitch)
-  `(org-document-info :foreground "dark orange")
-  `(org-indent :inherit (org-hide fixed-pitch))
-  `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+  ;; property value
   `(org-property-value :inherit fixed-pitch)
-  `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+
+  ;; meta lines
+  `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+
+  ;; ~~~~~~ TABLES ~~~~~~
   `(org-table :inherit fixed-pitch :foreground "#83a598")
-  `(org-verbatim :inherit variable-pitch))
+
+  ;; ~~~~~~ MISC ~~~~~~
+  ;; org-indent, set to just hide the indent
+  `(org-indent :inherit (org-hide fixed-pitch))
+
+  ;; special keywords
+  `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+
+  ;; quotes
+  `(org-quote :inherit (variable-pitch org-block))
+
+  )
 
 (setq org-hide-emphasis-markers t)
 
@@ -914,6 +935,8 @@ Refer to `org-agenda-prefix-format' for more information."
   '(tree-sitter-hl-face:function.call :inherit (link font-lock-function-name-face) :weight normal :underline nil))
 
 (setq writeroom-mode-line t)
+
+(setq +zen-text-scale 0.8)
 
 (after! git-gutter
   (setq git-gutter:disabled-modes '(org-mode)))

@@ -21,11 +21,6 @@ Make the undo limit much larger, and make jumping through words more exact.
 (global-subword-mode 1)
 #+end_src
 
-Stop text-scaling in zen mode:
-#+begin_src emacs-lisp
-(setq +zen-text-scale 0)
-#+end_src
-
 A couple main window settings, open maximized, and then have some opacity:
 #+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
@@ -65,29 +60,38 @@ Better buffer and frame names: (thanks to [[https://tecosaur.github.io/emacs-con
 #+end_src
 
 ** Visual Settings
-My default font is the nerd font variant of Fira Code. Nerd fonts can be found [[https://www.nerdfonts.com][here]]. There are a project by Ryan Oasis, and a quite useful one at that. They allow glyphs to appear, commonly used in Terminal fonts, and other applications.
+*** Fonts
+Starting with fonts! My default font is the nerd font variant of Fira Code. Nerd fonts can be found [[https://www.nerdfonts.com][here]]. There are a project by Ryan Oasis, and a quite useful one at that. They allow glyphs to appear, commonly used in Terminal fonts, and other applications. My variable-pitch and serif font of choice right now is [[https://edwardtufte.github.io/et-book/][ETBookOT]], from Edward Tufte. A beautiful font. There is a system-type switch here, as in my linux desktop I want larger fonts by default.
 
-On my linux computer, I want larger font as it is on a full size desktop, while on my mac I want smaller font:
+Here I set a variable to control the specific font families I want to use. If I want to swap to something else, I just need to change the family here.
 #+begin_src emacs-lisp
+;; alt options to fixed:
+;; JetBrainsMono Nerd Font Mono
+;; CaskaydiaCove Nerd Font Mono
+(defvar fixed-fam "FiraCode Nerd Font Mono")
+(defvar var-fam "ETBookOT")
+#+end_src
+
+Set all fonts directly:
+#+begin_src emacs-lisp
+(setq doom-unicode-font (font-spec :family fixed-fam))
+
 (case system-type
   ((gnu/linux)
-   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18)))
+   (setq doom-font (font-spec :family fixed-fam :size 18)
+         doom-big-font (font-spec :family fixed-fam :size 36)
+         doom-variable-pitch-font (font-spec :family var-fam :size 20 :height 180)
+         doom-serif-font (font-spec :family var-fam :size 20 :height 180)))
+
   ((darwin)
-   (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15))))
-
-
-;; alt fonts, commented out unless I want to swap to them
-                                        ;(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15))
-                                        ;(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 15))
+   (setq doom-font (font-spec :family fixed-fam :size 15)
+         doom-big-font (font-spec :family fixed-fam :size 24)
+         doom-variable-pitch-font (font-spec :family var-fam :size 18 :height 180)
+         doom-serif-font (font-spec :family var-fam :size 18 :height 180)
+         )))
 #+end_src
 
-Set var and fixed pitch fonts, this is mainly for Org mode:
-#+begin_src emacs-lisp
-(custom-set-faces!
- `(variable-pitch :family "ETBookOT" :height 180 :weight normal)
- `(fixed-pitch :family "FiraCode Nerd Font Mono" :height 150))
-#+end_src
-
+*** Line Numbers
 I use hybrid line numbers (current line is absolute, lines above and below are relative). I might change this at some point, but it is quite nice when in evil mode as it makes it easier to jump to different lines quickly. I also only want line numbers in programming buffers, the following accomplishes this:
 #+begin_src emacs-lisp
 ;; set relative lines
@@ -596,7 +600,7 @@ The following are a collection of useful options for clocking, most taken from [
 #+end_src
 
 ** Visuals
-[[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][This article]] has some great tips for customizing org mode to look much better. The following few code blocks take some stuff from that article to make org mode look much better. I also took stuff from [[https://lepisma.xyz/2017/10/28/ricing-org-mode/][ricing up Org mode]].
+[[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][This article]] has some great tips for customizing org mode to look much better. Another great resource is [[https://lepisma.xyz/2017/10/28/ricing-org-mode/][Ricing up Org mode]], a short article showing a really clean config. In this section, I have used both of these articles to help bootstrap my config.
 
 Fix image width:
 #+begin_src emacs-lisp
@@ -609,52 +613,48 @@ Set the done headline text:
   '(org-headline-done :foreground "#565761" :strike-through t))
 #+end_src
 
-*** Non-prose version
-The following code block is for using non-prose org mode. All it does is slightly modify headlines and the doc title.
+*** Prose "Mode"
+When in an org document, and zen mode is enabled, org is swapped to look like a much more normal word processor.
+Specific changes in this "prose mode":
+- no line numbers
+- no hl-line-mode
+- centered text, left justified
+- variable pitch font instead of fixed pitch (defined in the doom-variable-pitch font)
+
+This code block controls most of the changes when in zen mode. This is from [[https://github.com/tecosaur/emacs-config/blob/master/config.org][tecosaur again]], with this great hook on write-room mode. I modified it a bit to more fit my needs, of disabling hl-line-mode, not disabling org-indent, and setting visual line and variable pitch mode.
 #+begin_src emacs-lisp
-;; (custom-theme-set-faces
-;;  'user
-;;  `(org-level-8 ((t)))
-;;  `(org-level-7 ((t)))
-;;  `(org-level-6 ((t)))
-;;  `(org-level-5 ((t (:height 1.05 :inherit outline-5))))
-;;  `(org-level-4 ((t (:height 1.05 :inherit outline-4))))
-;;  `(org-level-3 ((t (:height 1.1 :inherit outline-3))))
-;;  `(org-level-2 ((t (:height 1.2 :inherit outline-2))))
-;;  `(org-level-1 ((t (:height 1.4 :inherit outline-1 :weight bold))))
-;;  `(org-document-title ((t (:height 1.0 :underline nil)))))
+(defvar +zen-serif-p t)
+
+(defvar +zen-org-starhide t)
+
+(after! writeroom-mode
+  (defun +zen-prose-org-h ()
+    (when (eq major-mode 'org-mode)
+      (setq-local display-line-numbers nil
+            visual-fill-column-width 70
+            )
+      (visual-line-mode 1)
+      (variable-pitch-mode 1)
+      (hl-line-mode 0)))
+  (defun +zen-nonprose-org-h ()
+    (when (eq major-mode 'org-mode)
+      (visual-line-mode 0)
+      (variable-pitch-mode 0)
+      (hl-line-mode 1)))
+  (pushnew! writeroom--local-variables
+            'display-line-numbers
+            'visual-fill-column-width)
+  (add-hook 'writeroom-mode-enable-hook #'+zen-prose-org-h)
+  (add-hook 'writeroom-mode-disable-hook #'+zen-nonprose-org-h))
 #+end_src
 
-*** Prose Version
-The next few codeblocks make org mode look like a normal word processor, and in general much fancier. It is an alternative to the above.
-
-**** General
-Disable line numbers in org mode:
+I prefer to usually be in prose mode when editing org docs, so let's add a hook to turn on zen mode when entering org mode.
 #+begin_src emacs-lisp
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
-#+end_src
-
-Enable variable pitch fonts in org, and a couple other hooks for cleaning up the UI:
-#+begin_src emacs-lisp
-(add-hook 'org-mode-hook 'visual-line-mode)
-(add-hook 'org-mode-hook 'variable-pitch-mode)
-
-;; enable zen mode
+;; enable zen mode on org mode start
 (add-hook 'org-mode-hook '+zen/toggle)
 #+end_src
 
-Disable ~hl-line-mode~ in org mode:
-(if any hl-line-mode issues arise, check here!)
-#+begin_src emacs-lisp
-;; disable global hl-line-mode
-(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
-
-;; add hl-line-mode hook to other modes besides org
-(add-hook! (prog-mode tex-mode conf-mode special-mode) #'hl-line-mode)
-#+end_src
-
-Set the cursor to always be a bar:
-Disabled for now as it was annoying...
+The box cursor is wonky on non monospaced fonts, this block sets it to always be a bar in org mode, however it became too challenging to edit, disabled for now.
 #+begin_src emacs-lisp
 ;; (add-hook 'org-mode-hook
 ;;           (lambda()
@@ -666,77 +666,77 @@ Disabled for now as it was annoying...
 #+end_src
 
 Set the theme to be different when typing org: (disabled for now, kind of annoying)
+If there is a way to do this on a buffer by buffer basis, that would be ideal.
 #+begin_src emacs-lisp
 ;; (add-hook 'org-mode-hook
 ;;           (lambda ()
 ;;             (load-theme 'doom-one-light)))
 #+end_src
 
-**** Specific font changes
-The following code blocks make specific org fonts look different.
-
-Modify headings to look better:
+*** Org font changes
+All font changes related to org mode are in here.
 #+begin_src emacs-lisp
 (custom-set-faces!
-  `(org-level-5 :height 1.05)
+  ;; ~~~~~~ HEADERS ~~~~~~
+  `(org-level-5 :height 1.05 :inherit outline-5)
 
-  '(org-level-4 :height 1.05)
+  '(org-level-4 :height 1.05 :inherit outline-4)
 
-  `(org-level-3 :height 1.15 :weight bold)
+  `(org-level-3 :height 1.15 :inherit outline-3 :weight bold)
 
-  `(org-level-2 :height 1.3 :weight bold :slant italic)
+  `(org-level-2 :height 1.3 :inherit outline-2 :weight bold :slant italic)
 
-  `(org-level-1 :height 1.5 :weight bold :foreground ,(doom-color 'fg)))
-#+end_src
+  `(org-level-1 :height 1.5 :inherit outline-1 :weight bold :foreground ,(doom-color 'fg))
 
-Modify codeblocks:
-#+begin_src emacs-lisp
-(custom-set-faces!
-  '(org-code :inherit (shadow fixed-pitch)))
-#+end_src
+  ;; ~~~~~~ CODE ~~~~~~
+  ;; inline code
+  '(org-code :inherit (shadow fixed-pitch))
 
-Modify doc title and meta keywords:
-#+begin_src emacs-lisp
-(custom-set-faces!
-  ; doc info keyword i.e #+TITLE:
+  ;; org-verbatim (alternative to org-code)
+  `(org-verbatim :inherit (shadow fixed-pitch))
+
+  ;; ~~~~~~ META TAGS ~~~~~~
+  ;; keyword for doc title, i.e #+TITLE
   `(org-document-info-keyword :inherit (shadow fixed-pitch))
 
-  ; for tags
+  ;; for tags
   `(org-tag :slant italic)
 
-  ; org doc title
-  `(org-document-title :height 1.3 :underline nil :inherit variable-pitch))
-#+end_src
+  ;; org doc title
+  `(org-document-title :height 1.3 :underline nil :inherit variable-pitch)
+  `(org-document-info :foreground "dark orange" :inherit variable-pitch)
 
-Modify org-verbatim to highlight:
-#+begin_src emacs-lisp
-
-#+end_src
-
-Style some org elements to look better
-#+begin_src emacs-lisp
-(custom-set-faces!
-  `(org-block :inherit fixed-pitch)
-  `(org-document-info :foreground "dark orange")
-  `(org-indent :inherit (org-hide fixed-pitch))
-  `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+  ;; property value
   `(org-property-value :inherit fixed-pitch)
-  `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
-  `(org-table :inherit fixed-pitch :foreground "#83a598")
-  `(org-verbatim :inherit variable-pitch))
-#+end_src
 
-=test=
-hello
-~hello~
+  ;; meta lines
+  `(org-meta-line :inherit (font-lock-comment-face fixed-pitch))
+
+  ;; ~~~~~~ TABLES ~~~~~~
+  `(org-table :inherit fixed-pitch :foreground "#83a598")
+
+  ;; ~~~~~~ MISC ~~~~~~
+  ;; org-indent, set to just hide the indent
+  `(org-indent :inherit (org-hide fixed-pitch))
+
+  ;; special keywords
+  `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
+
+  ;; quotes
+  `(org-quote :inherit (variable-pitch org-block))
+
+  )
+#+end_src
 
 *** Other visual changes
+The following few codeblocks just make general org mode look a little bit better.
+
 Hide emphasis markup:
 #+begin_src emacs-lisp
 (setq org-hide-emphasis-markers t)
 #+end_src
 
-Prettify symbols:
+Add some fancy symbols replacing some text:
 #+begin_src emacs-lisp
 (defun my/pretty-symbols ()
   (interactive)
@@ -1322,6 +1322,11 @@ Add some custom tree sitter fonts
 Keep the modeline in zen mode, needed for pomodoro timer and org clock
 #+begin_src emacs-lisp
 (setq writeroom-mode-line t)
+#+end_src
+
+Reduce text-scaling in zen mode:
+#+begin_src emacs-lisp
+(setq +zen-text-scale 0.8)
 #+end_src
 
 ** Git Gutter
