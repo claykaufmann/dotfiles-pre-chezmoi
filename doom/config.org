@@ -69,20 +69,25 @@ Here I set a variable to control the specific font families I want to use. If I 
 ;; JetBrainsMono Nerd Font Mono
 ;; CaskaydiaCove Nerd Font Mono
 ;; FiraCode Nerd Font Mono
+
+;; jetbrains mono has been wonky on my mac
 (defvar clay-fixed-pitch-face "JetBrainsMono Nerd Font Mono")
 (defvar clay-var-pitch-face "ETBookOT")
 #+end_src
 
-Set all fonts directly:
+Set all fonts:
 #+begin_src emacs-lisp
+;; set the fallback unicode font to fira code
+(setq doom-unicode-font (font-spec :family "FiraCode Nerd Font Mono"))
+
 (case system-type
-  ((gnu/linux)
+  ((gnu/linux) ; for linux
    (setq doom-font (font-spec :family clay-fixed-pitch-face :size 18)
          doom-big-font (font-spec :family clay-fixed-pitch-face :size 36)
          doom-variable-pitch-font (font-spec :family clay-var-pitch-face :size 20 :height 180)
          doom-serif-font (font-spec :family clay-var-pitch-face :size 20 :height 180)))
 
-  ((darwin)
+  ((darwin) ; for mac
    (setq doom-font (font-spec :family clay-fixed-pitch-face :size 15)
          doom-big-font (font-spec :family clay-fixed-pitch-face :size 24)
          doom-variable-pitch-font (font-spec :family clay-var-pitch-face :size 18 :height 180)
@@ -620,17 +625,13 @@ Specific changes in this "prose mode":
 - centered text, left justified
 - variable pitch font instead of fixed pitch (defined in the doom-variable-pitch font)
 
-This code block controls most of the changes when in zen mode. This is from [[https://github.com/tecosaur/emacs-config/blob/master/config.org][tecosaur again]], with this great hook on write-room mode. I modified it a bit to more fit my needs, of disabling hl-line-mode, not disabling org-indent, and setting visual line and variable pitch mode.
+This code block controls most of the changes when in zen mode. This is from [[https://github.com/tecosaur/emacs-config/blob/master/config.org][tecosaur again]], with this great hook on write-room mode. I modified it a bit to more fit my needs, of disabling hl-line-mode, not disabling org-indent, and variable pitch font.
 #+begin_src emacs-lisp
-(defvar +zen-serif-p t)
-
-(defvar +zen-org-starhide t)
-
 (after! writeroom-mode
   (defun +zen-prose-org-h ()
     (when (eq major-mode 'org-mode)
       (setq-local display-line-numbers nil
-            visual-fill-column-width 70
+            visual-fill-column-width 70 ; control the width of the centering here!
             )
       (variable-pitch-mode 1)
       (hl-line-mode 0)))

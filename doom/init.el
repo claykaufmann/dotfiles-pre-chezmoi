@@ -35,7 +35,7 @@
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        indent-guides     ; highlighted indent columns
-       (ligatures +extra +fira)         ; ligatures and symbols to make your code pretty again (DISABLED BECUZ THEY WERE SMALL)
+       (ligatures +extra)         ; ligatures and symbols to make your code pretty again (DISABLED BECUZ THEY WERE SMALL)
        minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
@@ -150,8 +150,8 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +roam2 +pretty +pomodoro +dragndrop +pandoc)               ; organize your plain life in plain text
-       ;;php               ; perl's insecure younger brother
+       (org +roam2 +pretty +pomodoro +dragndrop)               ; organize your plain life in plain text
+       ;; php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +lsp +pyright +pyenv +poetry +conda)

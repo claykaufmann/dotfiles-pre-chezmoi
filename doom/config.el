@@ -41,17 +41,22 @@
 ;; JetBrainsMono Nerd Font Mono
 ;; CaskaydiaCove Nerd Font Mono
 ;; FiraCode Nerd Font Mono
+
+;; jetbrains mono has been wonky on my mac
 (defvar clay-fixed-pitch-face "JetBrainsMono Nerd Font Mono")
 (defvar clay-var-pitch-face "ETBookOT")
 
+;; set the fallback unicode font to fira code
+(setq doom-unicode-font (font-spec :family "FiraCode Nerd Font Mono"))
+
 (case system-type
-  ((gnu/linux)
+  ((gnu/linux) ; for linux
    (setq doom-font (font-spec :family clay-fixed-pitch-face :size 18)
          doom-big-font (font-spec :family clay-fixed-pitch-face :size 36)
          doom-variable-pitch-font (font-spec :family clay-var-pitch-face :size 20 :height 180)
          doom-serif-font (font-spec :family clay-var-pitch-face :size 20 :height 180)))
 
-  ((darwin)
+  ((darwin) ; for mac
    (setq doom-font (font-spec :family clay-fixed-pitch-face :size 15)
          doom-big-font (font-spec :family clay-fixed-pitch-face :size 24)
          doom-variable-pitch-font (font-spec :family clay-var-pitch-face :size 18 :height 180)
@@ -399,15 +404,11 @@
 (custom-set-faces!
   '(org-headline-done :foreground "#565761" :strike-through t))
 
-(defvar +zen-serif-p t)
-
-(defvar +zen-org-starhide t)
-
 (after! writeroom-mode
   (defun +zen-prose-org-h ()
     (when (eq major-mode 'org-mode)
       (setq-local display-line-numbers nil
-            visual-fill-column-width 70
+            visual-fill-column-width 70 ; control the width of the centering here!
             )
       (variable-pitch-mode 1)
       (hl-line-mode 0)))
