@@ -49,7 +49,7 @@
 ;; set the fallback unicode font to fira code
 (setq doom-unicode-font (font-spec :family "FiraCode Nerd Font Mono"))
 
-(case system-type
+(cl-case system-type
   ((gnu/linux) ; for linux
    (setq doom-font (font-spec :family clay-fixed-pitch-face :size 18)
          doom-big-font (font-spec :family clay-fixed-pitch-face :size 36)
@@ -456,8 +456,6 @@
   ;; org-verbatim (alternative to org-code)
   `(org-verbatim :inherit (shadow fixed-pitch))
 
-  `(org-block :inherit variable-pitch :size 15)
-
   ;; ~~~~~~ META TAGS ~~~~~~
   ;; keyword for doc title, i.e #+TITLE
   `(org-document-info-keyword :inherit (shadow fixed-pitch))
@@ -485,8 +483,11 @@
   ;; special keywords
   `(org-special-keyword :inherit (font-lock-comment-face fixed-pitch))
 
+  ;; the org-block thing, its all block segments
+  `(org-block :inherit fixed-pitch)
+
   ;; quotes
-  `(org-quote :inherit (variable-pitch org-block))
+  `(org-quote :inherit variable-pitch)
 
   )
 
