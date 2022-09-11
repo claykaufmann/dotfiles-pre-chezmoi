@@ -83,9 +83,9 @@
 ;; display indent info
 (setq doom-modeline-indent-info t)
 
-;; change edited file color to orange from red
-(custom-set-faces!
-  '(doom-modeline-buffer-modified :foreground "orange"))
+;; change edited file color to orange from red (disabled for now)
+;; (custom-set-faces!
+;;   '(doom-modeline-buffer-modified :foreground "orange"))
 
 ;; enable modeline icons with emacsclient (technically breaks terminal but no issues for me)
 (setq doom-modeline-icon t)
