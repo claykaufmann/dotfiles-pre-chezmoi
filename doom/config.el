@@ -456,6 +456,8 @@
   ;; org-verbatim (alternative to org-code)
   `(org-verbatim :inherit (shadow fixed-pitch))
 
+  `(org-block :inherit variable-pitch :size 15)
+
   ;; ~~~~~~ META TAGS ~~~~~~
   ;; keyword for doc title, i.e #+TITLE
   `(org-document-info-keyword :inherit (shadow fixed-pitch))
