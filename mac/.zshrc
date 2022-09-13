@@ -50,6 +50,9 @@ export PATH="/Applications/CMake.app/Contents/bin":"$PATH"
 # ~~~ yarn path modification
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node-modules/.bin:$PATH"
 
+# ~~~ EMACS PATH EXTRAS ~~~
+export PATH="/opt/homebrew/Cellar/emacs-plus@28/28.1/bin:$PATH"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
