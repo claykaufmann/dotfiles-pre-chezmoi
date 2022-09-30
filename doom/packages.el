@@ -76,3 +76,11 @@
 
 ;; magit-delta
 (package! magit-delta)
+
+;; this package is supposed to sync all the icons and nerd fonts, not currently working
+;; (package! all-the-icons-nerd-fonts
+;;   :recipe (:host github :repo "mohkale/all-the-icons-nerd-fonts"))
+
+;; nerd fonts for use with the nerd fonts (broken with all the icons)
+(package! nerd-fonts
+  :recipe (:host github :repo "mohkale/nerd-fonts.el"))

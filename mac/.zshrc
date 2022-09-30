@@ -68,3 +68,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export VIRTUAL_ENV_DISABLE_PROMPT=true

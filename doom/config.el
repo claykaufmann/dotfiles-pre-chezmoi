@@ -21,21 +21,21 @@
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 
-(setq doom-fallback-buffer-name "► Emacs"
-      +doom-dashboard-name "► Doom")
+;; (setq doom-fallback-buffer-name "► Emacs"
+;;       +doom-dashboard-name "► Doom")
 
-(setq frame-title-format
-      '(""
-        (:eval
-         (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-             (replace-regexp-in-string
-              ".*/[0-9]*-?" "☰ "
-              (subst-char-in-string ?_ ?  buffer-file-name))
-           "%b"))
-        (:eval
-         (let ((project-name (projectile-project-name)))
-           (unless (string= "-" project-name)
-             (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
+;; (setq frame-title-format
+;;       '(""
+;;         (:eval
+;;          (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+;;              (replace-regexp-in-string
+;;               ".*/[0-9]*-?" "☰ "
+;;               (subst-char-in-string ?_ ?  buffer-file-name))
+;;            "%b"))
+;;         (:eval
+;;          (let ((project-name (projectile-project-name)))
+;;            (unless (string= "-" project-name)
+;;              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 
 ;; fixed font options: (SAVED HERE FOR EASE OF USE)
 ;; JetBrainsMono Nerd Font Mono
@@ -488,7 +488,6 @@
 
   ;; quotes
   `(org-quote :inherit variable-pitch)
-
   )
 
 (setq org-hide-emphasis-markers t)
@@ -651,7 +650,7 @@
 
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
-         "* Tasks\n\n\n* Ideas\n\n\n* Thoughts\n\n\n* Daily Journal\n* [[id:84572ce2-320f-439a-badf-ad24577b493e][Daily Note]] for %<%Y-%m-%d>"
+         "* Tasks\n\n\n* Exercise\n** Running\n\n** Cycling\n\n** Other\n\n\n* Ideas\n\n\n* Thoughts\n\n\n* Daily Journal\n\n\n* [[id:84572ce2-320f-439a-badf-ad24577b493e][Daily Note]] for %<%Y-%m-%d>"
          :target (file+head "%<%Y-%m-%d>.org"
                             "#+title: %<%Y-%m-%d>\n"))))
 
@@ -676,19 +675,31 @@
         (tags . " %i %(vulpea-agenda-category 18) %t ")
         (search . " %i %(vaulpea-agenda-category 18) %t ")))
 
+(defun clay/update-diary ()
+  "runs a python script to update org agenda"
+  (shell-command
+   "python ~/Dropbox/Org-Utils/mac_diary_active.py"))
+
+;; (add-hook 'org-agenda-mode-hook 'clay/update-diary)
+;; (clay/update-diary)
+
 (setq org-agenda-format-date
           (lambda (date)
             (concat "\n" (org-agenda-format-date-aligned date))))
 
 (custom-set-faces!
   ;; set the agenda structure font (heading) mainly used to change the color of super agenda group names
-  '(org-agenda-structure :slant italic :foreground "green3" :width semi-expanded )
+  `(org-agenda-structure :slant italic :foreground ,(doom-color 'teal) :width semi-expanded :height 1.3)
 
   ;; set the shceduled today font (for some reason it defaults to being dimmed, which was not nice)
-  '(org-scheduled-today :foreground "MediumPurple1")
+  `(org-scheduled-today :foreground ,(doom-color 'violet))
 
   ;; by default this is white, add some color to make it pop on the time grid
-  '(org-agenda-diary :foreground "goldenrod1"))
+  `(org-agenda-diary :foreground ,(doom-color 'orange))
+
+  ;; change the today font
+  `(org-agenda-date-today :foreground ,(doom-color 'purple) :height 1.5)
+)
 
 (org-super-agenda-mode)
 
@@ -701,8 +712,6 @@
 
 ;; set the span of the default agenda to be a week
 (setq org-agenda-span 10)
-
-;; show deadlines
 
 (setq org-agenda-custom-commands
 
@@ -720,23 +729,21 @@
          ((agenda "" ((org-agenda-span 'day)
                       ;; enable the diary in the daily view so I can see how classes fit into the day
                       (org-agenda-include-diary t)
-
-                      ;; add a hook to call org mac iCal
-                      (org-agenda-mode-hook (lambda () (org-mac-iCal)))
+                      (org-agenda-overriding-header "")
 
                       ;; add 7 days of warning to get things due this week
                       (org-deadline-warning-days 7)
                       ;; set super agenda groups
                       (org-super-agenda-groups
                         ;; main group of today to show the time grid
-                       '((:name "Today"
+                       '((:name " Today"
                           :time-grid t
                           :date today
                           :order 1
                           )
 
                          ;; second group to show all tasks due this week (using deadline-warning-days)
-                         (:name "Due this week"
+                         (:name " Due this week"
                           :todo t
                           :order 4)))))
 
@@ -751,7 +758,7 @@
                            :order 1)
 
                           ;; all taks with a priority of A
-                          (:name "Important"
+                          (:name " Important"
                            :priority "A"
                            :order 3)
 
@@ -761,35 +768,35 @@
                            :order 5)
 
                           ;; overdue tasks
-                          (:name "Overdue"
+                          (:name " Overdue"
                            :deadline past
                            :order 4)
 
                           ;; assignments for school
-                          (:name "Assignments"
+                          (:name " Assignments"
                            :tag "assignment"
                            :todo "ASGN"
                            :order 6)
 
                           ;; general UVM tasks
-                          (:name "UVM"
+                          (:name " UVM"
                            :tag "class"
                            :discard (:todo "PROJ")
                            :order 6)
 
                           ;; tasks with no due date
-                          (:name "No due date"
+                          (:name " No due date"
                            :deadline nil
                            :order 70
                            )
 
                           ;; emacs related tasks (before projects to separate them)
-                          (:name "Emacs"
+                          (:name " Emacs"
                            :tag "emacs"
                            :order 9)
 
                           ;; all projects, hide the PROJ tag to avoid duplication (the tag will appear if the due date is coming up in the top week section)
-                          (:name "Projects"
+                          (:name " Projects"
                            :discard (:todo "PROJ")
                            :tag ("project" "metaproject")
                            :order 7)
@@ -941,3 +948,10 @@ Refer to `org-agenda-prefix-format' for more information."
 
 (after! git-gutter
   (setq git-gutter:disabled-modes '(org-mode)))
+
+(after! all-the-icons-nerd-fonts
+  :after all-the-icons
+  :demand t
+  :config
+  (all-the-icons-nerd-fonts-prefer)
+  )
