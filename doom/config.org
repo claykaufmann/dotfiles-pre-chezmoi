@@ -488,6 +488,26 @@ Set ~dvisvgm~ as the renderer (fixes low res latex previews in org buffers):
 (setq org-latex-create-formula-image-program 'dvisvgm)
 #+end_src
 
+Increase the size of the generated latex previews:
+#+begin_src emacs-lisp
+(after! org (plist-put org-format-latex-options :scale 1.75))
+#+end_src
+
+Enable latex previews on opening of org buffer:
+#+begin_src emacs-lisp
+(after! org (setq org-startup-with-latex-preview t))
+#+end_src
+
+Use the =org-fragtop= package for easier inline latex editing:
+#+begin_src emacs-lisp
+(use-package! org-fragtog
+  :after org
+  :hook (org-mode . org-fragtog-mode) ; this auto-enables it when you enter an org-buffer, remove if you do not want this
+  :config
+  ;; whatever you want
+  )
+#+end_src
+
 Set the output export directory to be different (from [[http://rwx.io/posts/org-export-configurations/][this article]]):
 #+begin_src emacs-lisp
 ;; set directory name

@@ -321,6 +321,17 @@
 
 (setq org-latex-create-formula-image-program 'dvisvgm)
 
+(after! org (plist-put org-format-latex-options :scale 1.75))
+
+(after! org (setq org-startup-with-latex-preview t))
+
+(use-package! org-fragtog
+  :after org
+  :hook (org-mode . org-fragtog-mode) ; this auto-enables it when you enter an org-buffer, remove if you do not want this
+  :config
+  ;; whatever you want
+  )
+
 ;; set directory name
 (defvar org-export-output-directory "exports" "prefix of directory used for org-mode export")
 

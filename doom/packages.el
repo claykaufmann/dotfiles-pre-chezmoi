@@ -84,3 +84,6 @@
 ;; nerd fonts for use with the nerd fonts (broken with all the icons)
 (package! nerd-fonts
   :recipe (:host github :repo "mohkale/nerd-fonts.el"))
+
+;; for easier inline latex editing
+(package! org-fragtog)
