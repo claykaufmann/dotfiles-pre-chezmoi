@@ -495,7 +495,7 @@ Increase the size of the generated latex previews:
 
 Enable latex previews on opening of org buffer:
 #+begin_src emacs-lisp
-(after! org (setq org-startup-with-latex-preview t))
+;; (after! org (setq org-startup-with-latex-preview t))
 #+end_src
 
 Use the =org-fragtop= package for easier inline latex editing:
@@ -861,76 +861,76 @@ For almost everything else, I used some org roam templates for creating new note
       ;; the default template for a note
       '(("d" "default" plain
          "%?"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: ")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags:")
          :unnarrowed t)
 
         ("t" "thought" plain "* Links\n\n* Thought\n\n* References\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: thought")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: thought")
          :unnarrowed t)
 
         ;; the project template, used for projects WITH A DEADLINE
         ("p" "project" plain "* Overview\n\n* Tasks\n** TODO Set project name and deadline\n\n* Ideas\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: project")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: project")
          :unnarrowed t)
 
         ;; the metaproject template, used for projects without a deadline
         ("P" "meta project" plain "* Overview\n\n* Tasks\n** TODO Add project name and set a work schedule\n\n* Thoughts\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: metaproject")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: metaproject")
          :unnarrowed t)
 
         ;; class template, used as the homepage for a class
         ("C" "class" plain "* Class Overview\n\n\n* Homework\n\n\n* Notes\n\n\n* Ideas\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: class:classname")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: class:classname")
          :unnarrowed t)
 
         ;; lecture note template, used for a lecture note for a class
         ("c" "lecturenote" plain "* Overview\n\n\n* Notes\n\n\n* References"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: classnote:classname:class")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: classnote:classname:class")
          :unnarrowed t)
 
         ;; a default note template
         ("n" "note" plain "* Overview\n\n* References"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: note")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: note")
          :unnarrowed t)
 
         ;; data structure and algo templates, two things I have been heavily taking notes on lately
         ("d" "data structure" plain "* %?\n\n* References"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: software:datastructure")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: software:datastructure")
          :unnarrowed t)
         ("A" "algorithm" plain "* %?\n\n* References"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: software:algorithm")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: software:algorithm")
          :unnarrowed t)
 
         ;; a meeting note, used for a meeting (also a normal org capture note used when I do not know where this will go)
         ("m" "meeting" plain "* %?\n\n* Context"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: meeting")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: meeting")
          :unnarrowed t)
 
         ;; MOC, or Map of Content, used to find smaller subcategories within the MOC
         ("M" "MOC" plain "* %?\n\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: MOC")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: MOC")
          :unnarrowed t)
 
         ;; a cooking recipe note, used for storing all of my cooking recipes
         ("R" "cooking recipe" plain "* Overview\n\n\n* Ingredients\n\n* Recipe\n\n* Cooking Log\n** Date\n** Time Taken\n** Thoughts\n* Links\n- [[id:b10487ad-2402-418f-85af-3f1513b1b631][Cooking Recipes]] "
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: recipe")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: recipe")
          :unnarrowed t)
 
         ("r" "resource" plain "* Overview\n\n\n* References\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: resource")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: resource")
          :unnarrowed t)
 
         ("w" "weekly goal setting" plain "* Goals\n\n* Action Items\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: weeklygoals")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: weeklygoals")
          :unnarrowed t)
 
         ("f" "person" plain "* General\nName:\nFrom:\nBirthday:\nCurrent Address:\n\n\n* Relatives\n\n\n* Thoughts\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: people")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: people")
          :unnarrowed t)
 
         ;; an assignment note, used for tracking progress on an assignment
         ("a" "assignment" plain "* Overview\n\n* Tasks\n\n\n* Notes\n\n* Ideas\n\n* Resources\n"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: assignment:class")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: assignment:class")
          :unnarrowed t)))
 #+end_src
 
