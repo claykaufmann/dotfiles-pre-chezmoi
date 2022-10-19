@@ -534,11 +534,6 @@ Leaving this modified version here in case I want to swap to different directori
 ;;       (make-directory pub-dir))))
 #+end_src
 
-Fix citations not working with latexmk:
-#+begin_src emacs-lisp
-;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
-#+end_src
-
 *** Inbox
 For all inbox-related things, I use a vulpea function that is based on the system name. There is one inbox file per system. The idea is to use inherited tags so all headings in an inbox file are marked with the ~REFILE~ tag. I then have an agenda view that shows all things that need to be refiled.
 

@@ -352,8 +352,6 @@
 ;;     (when (not (file-directory-p pub-dir))
 ;;       (make-directory pub-dir))))
 
-;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
-
 (case system-type
   ((darwin)
    (defvar vulpea-capture-inbox-file
