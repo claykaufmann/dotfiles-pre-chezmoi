@@ -534,6 +534,11 @@ Leaving this modified version here in case I want to swap to different directori
 ;;       (make-directory pub-dir))))
 #+end_src
 
+Fix citations not working with latexmk:
+#+begin_src emacs-lisp
+;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
+#+end_src
+
 *** Inbox
 For all inbox-related things, I use a vulpea function that is based on the system name. There is one inbox file per system. The idea is to use inherited tags so all headings in an inbox file are marked with the ~REFILE~ tag. I then have an agenda view that shows all things that need to be refiled.
 
@@ -869,12 +874,12 @@ For almost everything else, I used some org roam templates for creating new note
          :unnarrowed t)
 
         ;; the project template, used for projects WITH A DEADLINE
-        ("p" "project" plain "* Overview\n\n* Tasks\n** TODO Set project name and deadline\n\n* Ideas\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
+        ("p" "project" plain "* Overview\n\n* Tasks\n** TODO Set project name and deadline\n\n* Ideas\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ ${title}"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: project")
          :unnarrowed t)
 
         ;; the metaproject template, used for projects without a deadline
-        ("P" "meta project" plain "* Overview\n\n* Tasks\n** TODO Add project name and set a work schedule\n\n* Thoughts\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
+        ("P" "meta project" plain "* Overview\n\n* Tasks\n** TODO Add project name and set a work schedule\n\n* Thoughts\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ ${title}"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: metaproject")
          :unnarrowed t)
 
@@ -1377,4 +1382,22 @@ This is to fix collisions between nerd fonts and all the icons
   :config
   (all-the-icons-nerd-fonts-prefer)
   )
+#+end_src
+
+** Citations Config
+For citations, I use [[https://www.zotero.org/][Zotero]] with the better bibtex extension. This allows me to save all citations into Zotero, and upon my library changing, better bibtex will automatically export it to a =.bib= file, which is the path I set for my bibliography. From there, I can insert citations with =org-cite=. If I need to make references modifications in Emacs, I can do so with =citar=. Upon any org-latex export, the citations will be put in accordingly.
+
+Set the citar bibliography loc:
+#+begin_src emacs-lisp
+(setq! citar-bibliography '("~/Dropbox/Terrapin/references/references.bib"))
+#+end_src
+
+Set the citar notes path:
+#+begin_src emacs-lisp
+(setq! citar-notes-paths '("~/Dropbox/Terrapin/"))
+#+end_src
+
+Set the org-cite bibliography file:
+#+begin_src emacs-lisp
+(setq org-cite-global-bibliography '("~/Dropbox/Terrapin/references/references.bib"))
 #+end_src

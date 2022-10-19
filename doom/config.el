@@ -352,6 +352,8 @@
 ;;     (when (not (file-directory-p pub-dir))
 ;;       (make-directory pub-dir))))
 
+;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
+
 (case system-type
   ((darwin)
    (defvar vulpea-capture-inbox-file
@@ -595,12 +597,12 @@
          :unnarrowed t)
 
         ;; the project template, used for projects WITH A DEADLINE
-        ("p" "project" plain "* Overview\n\n* Tasks\n** TODO Set project name and deadline\n\n* Ideas\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
+        ("p" "project" plain "* Overview\n\n* Tasks\n** TODO Set project name and deadline\n\n* Ideas\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ ${title}"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: project")
          :unnarrowed t)
 
         ;; the metaproject template, used for projects without a deadline
-        ("P" "meta project" plain "* Overview\n\n* Tasks\n** TODO Add project name and set a work schedule\n\n* Thoughts\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ projectname"
+        ("P" "meta project" plain "* Overview\n\n* Tasks\n** TODO Add project name and set a work schedule\n\n* Thoughts\n\n* Notes\n\n* Meetings\n\n* Resources\n\n* PROJ ${title}"
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: Clay Kaufmann\n#+filetags: metaproject")
          :unnarrowed t)
 
@@ -966,3 +968,9 @@ Refer to `org-agenda-prefix-format' for more information."
   :config
   (all-the-icons-nerd-fonts-prefer)
   )
+
+(setq! citar-bibliography '("~/Dropbox/Terrapin/references/references.bib"))
+
+(setq! citar-notes-paths '("~/Dropbox/Terrapin/"))
+
+(setq org-cite-global-bibliography '("~/Dropbox/Terrapin/references/references.bib"))
