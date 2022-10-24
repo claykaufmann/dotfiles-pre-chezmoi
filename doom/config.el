@@ -717,9 +717,19 @@
   ;; by default this is white, add some color to make it pop on the time grid
   `(org-agenda-diary :foreground ,(doom-color 'orange))
 
+  ;; set dimmed todo to be normal color
+  ;; todo keyword ends up being black, that is ok
+  `(org-agenda-dimmed-todo-face :foreground ,(doom-color 'fg))
+
   ;; change the today font
   `(org-agenda-date-today :foreground ,(doom-color 'purple) :height 1.5)
 )
+
+(setq org-agenda-deadline-faces
+      '((1.001 . error)
+        (1.0 . org-warning)
+        (0.1 . org-upcoming-deadline)
+        (0.1 . org-upcoming-distant-deadline)))
 
 (org-super-agenda-mode)
 
