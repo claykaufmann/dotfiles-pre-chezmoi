@@ -471,7 +471,7 @@
 
   ;; ~~~~~~ CODE ~~~~~~
   ;; inline code
-  '(org-code :inherit (shadow fixed-pitch))
+  `(org-code :inherit (shadow fixed-pitch) :foreground ,(doom-color 'green))
 
   ;; org-verbatim (alternative to org-code)
   `(org-verbatim :inherit (shadow fixed-pitch))
@@ -485,7 +485,7 @@
 
   ;; org doc title
   `(org-document-title :height 1.3 :underline nil :inherit variable-pitch)
-  `(org-document-info :foreground "dark orange" :inherit variable-pitch)
+  `(org-document-info :foreground ,(doom-color 'orange) :inherit variable-pitch)
 
   ;; property value
   `(org-property-value :inherit fixed-pitch)
