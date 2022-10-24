@@ -551,7 +551,7 @@ Set the vulpea inbox file (from [[https://d12frosted.io/posts/2021-05-21-task-ma
 ** Task Management
 For my todo keywords, I use a fairly basic system. This may change as I delve deeper into Emacs.
 
-All tasks are marked with TODO. When I get around to it, I mark tasks as NEXT, which appear in a different section in my org agenda thanks to [[https://github.com/alphapapa/org-super-agenda][org-super-agenda]]. Then, when I clock in a task, it is automatically updated to be marked as ~ACTV~. If the task is set to be done, I am automatically clocked out of the task. If I clock out and have not completed the task, then the task is reset to TODO. I might change this for it to change to NEXT, but that might annoy me over time. Upon completing, the task is marked as ~DONE~. If I cannot get to it, it is marked as ~WAIT~, and if it is blocked by another task, it is marked as ~BLKD~. Sequences are also automatically updated when changed, as mentioned in the [[https://orgmode.org/manual/Tracking-TODO-state-changes.html][org mode manual]]. The blocked and cancelled keywords, when swapped to, ask for a note, for blocked, this is used to mention what task is blocking it.
+All tasks are marked with TODO. When I get around to it, I mark tasks as NEXT, which appear in a different section in my org agenda thanks to [[https://github.com/alphapapa/org-super-agenda][org-super-agenda]].  Upon completing, the task is marked as ~DONE~. If I cannot get to it, it is marked as ~WAIT~, and if it is blocked by another task, it is marked as ~BLKD~. Sequences are also automatically updated when changed, as mentioned in the [[https://orgmode.org/manual/Tracking-TODO-state-changes.html][org mode manual]]. The blocked and cancelled keywords, when swapped to, ask for a note, for blocked, this is used to mention what task is blocking it.
 
 Projects are signified with ~PROJ~. When they are completed or cancelled, the ~DONE~ and ~CANC~ keywords are used. This keyword is there simply to allow me to set a schedule and a deadline for a project.
 
@@ -561,16 +561,14 @@ Set the todo keyword sequence:
 #+begin_src emacs-lisp
 (after! org
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "PROJ(p!)" "ASGN(a!)" "NEXT(n!)" "ACTV(a!)" "WAIT(w!)" "HOLD(h!)" "BLKD(b@/!)" "|" "DONE(d!)" "CANC(c@)"))))
+        '((sequence "TODO(t!)" "PROJ(p!)" "ASGN(a!)" "NEXT(n!)" "HOLD(h!)" "BLKD(b@/!)" "|" "DONE(d!)" "CANC(c@)"))))
 #+end_src
 
 After setting the keywords, give them some color to make them pop:
 #+begin_src emacs-lisp
 (after! org
   (setq org-todo-keyword-faces
-        '(("ACTV" . "green")
-          ("NEXT" . "cyan2")
-          ("WAIT" . "orange")
+        '(("NEXT" . "cyan2")
           ("HOLD" . "orange")
           ("BLKD" . "red1")
           ("PROJ" . "gray71")
@@ -636,7 +634,7 @@ Set the done headline text:
   '(org-headline-done :foreground "#565761" :strike-through t))
 #+end_src
 
-Modify org-emphasis-alist to add highlighting of words
+Modify ~org-emphasis-alist~ to add highlighting of words
 #+begin_src emacs-lisp
 (after! org
   (setq org-emphasis-alist
@@ -978,12 +976,6 @@ Start in log mode, include deadlines
 (setq org-deadline-warning-days 7)
 #+end_src
 
-Try to stop duplicate agenda todos:
-For now I am removing this, as I still want scheduled tasks to appear in the timeline agenda.
-#+begin_src emacs-lisp
-;;(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-#+end_src
-
 Hide completed tasks from agenda:
 #+begin_src emacs-lisp
 (setq org-agenda-skip-scheduled-if-done t)
@@ -1001,7 +993,7 @@ For todo's, I used [[https://stackoverflow.com/questions/58820073/s-in-org-agend
 #+end_src
 
 *** Agenda Diary
-We want to call the =mac_diary.py= file when agenda is opened for an up to date calendar.
+We want to call the ~mac_diary.py~ file when agenda is opened for an up to date calendar.
 This cannot function until we somehow get Emacs access to the apple calendar. (UPDATE: Got that fixed, but icalbuddy still doesn't work)
 #+begin_src emacs-lisp
 (defun clay/update-diary ()

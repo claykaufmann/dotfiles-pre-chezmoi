@@ -362,13 +362,11 @@
 
 (after! org
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "PROJ(p!)" "ASGN(a!)" "NEXT(n!)" "ACTV(a!)" "WAIT(w!)" "HOLD(h!)" "BLKD(b@/!)" "|" "DONE(d!)" "CANC(c@)"))))
+        '((sequence "TODO(t!)" "PROJ(p!)" "ASGN(a!)" "NEXT(n!)" "HOLD(h!)" "BLKD(b@/!)" "|" "DONE(d!)" "CANC(c@)"))))
 
 (after! org
   (setq org-todo-keyword-faces
-        '(("ACTV" . "green")
-          ("NEXT" . "cyan2")
-          ("WAIT" . "orange")
+        '(("NEXT" . "cyan2")
           ("HOLD" . "orange")
           ("BLKD" . "red1")
           ("PROJ" . "gray71")
@@ -683,8 +681,6 @@
 (setq org-agenda-start-with-log-mode t)
 (setq org-agenda-include-deadlines t)
 (setq org-deadline-warning-days 7)
-
-;;(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 
 (setq org-agenda-skip-scheduled-if-done t)
 (setq org-agenda-skip-deadline-if-done t)
