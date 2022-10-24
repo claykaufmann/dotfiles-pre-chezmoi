@@ -19,6 +19,12 @@ alias kssh="kitty +kitten ssh"
 # vim
 alias vim='nvim'
 
+# test doom alias
+alias doom-test='~/doom-emacs-test/bin/doom'
+
+# launch doom alias
+alias emacs-test='emacs --with-profile doom-test'
+
 # ~~~~~~~ CONFIG SETUP ~~~~~~~
 # ~~~ pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -52,6 +58,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node-modules/.bin:$PATH"
 
 # ~~~ EMACS PATH EXTRAS ~~~
 export PATH="/opt/homebrew/Cellar/emacs-plus@28/28.1/bin:$PATH"
+
+# ~~~ DOOM PATHS ~~~
+export PATH="$HOME/doom-emacs/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

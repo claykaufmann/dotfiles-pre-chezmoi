@@ -415,6 +415,15 @@
 (custom-set-faces!
   '(org-headline-done :foreground "#565761" :strike-through t))
 
+(after! org
+  (setq org-emphasis-alist
+        `(("*" (bold))
+          ("/" italic)
+          ("_" underline)
+          ("=" (:background "maroon" :foreground "white"))
+          ("~" org-code verbatim)
+          ("+" (:strike-through t)))))
+
 (after! writeroom-mode
   (defun +zen-prose-org-h ()
     (when (eq major-mode 'org-mode)

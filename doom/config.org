@@ -636,6 +636,18 @@ Set the done headline text:
   '(org-headline-done :foreground "#565761" :strike-through t))
 #+end_src
 
+Modify org-emphasis-alist to add highlighting of words
+#+begin_src emacs-lisp
+(after! org
+  (setq org-emphasis-alist
+        `(("*" (bold))
+          ("/" italic)
+          ("_" underline)
+          ("=" (:background "maroon" :foreground "white"))
+          ("~" org-code verbatim)
+          ("+" (:strike-through t)))))
+#+end_src
+
 *** Prose "Mode"
 When in an org document, and zen mode is enabled, org is swapped to look like a much more normal word processor.
 Specific changes in this "prose mode":
