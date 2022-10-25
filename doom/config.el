@@ -711,7 +711,7 @@
   `(org-scheduled-today :foreground ,(doom-color 'violet))
 
   ;; by default this is white, add some color to make it pop on the time grid
-  `(org-agenda-diary :foreground ,(doom-color 'orange))
+  `(org-agenda-diary :foreground ,(doom-color 'blue))
 
   ;; set dimmed todo to be normal color
   ;; todo keyword ends up being black, that is ok

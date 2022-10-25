@@ -498,7 +498,7 @@ Enable latex previews on opening of org buffer:
 ;; (after! org (setq org-startup-with-latex-preview t))
 #+end_src
 
-Use the =org-fragtop= package for easier inline latex editing:
+Use the ~org-fragtop~ package for easier inline latex editing:
 #+begin_src emacs-lisp
 (use-package! org-fragtog
   :after org
@@ -1023,7 +1023,7 @@ We now set a bunch of custom faces for different org agenda variables, to make t
   `(org-scheduled-today :foreground ,(doom-color 'violet))
 
   ;; by default this is white, add some color to make it pop on the time grid
-  `(org-agenda-diary :foreground ,(doom-color 'orange))
+  `(org-agenda-diary :foreground ,(doom-color 'blue))
 
   ;; set dimmed todo to be normal color
   ;; todo keyword ends up being black, that is ok
