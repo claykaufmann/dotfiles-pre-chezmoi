@@ -550,9 +550,9 @@
   :defines org-fancy-priorities-list
   :hook (org-mode . org-fancy-priorities-mode))
 
-(setq org-fancy-priorities-list '((?A . "")
-                                  (?B . "")
-                                  (?C . "")))
+(setq org-fancy-priorities-list '((?A . "[]")
+                                  (?B . "[]")
+                                  (?C . "[]")))
 
 (setq org-priority-faces '((?A :foreground "red3")
                            (?B :foreground "goldenrod2")
