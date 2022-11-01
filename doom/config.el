@@ -21,21 +21,21 @@
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 
-;; (setq doom-fallback-buffer-name "► Emacs"
-;;       +doom-dashboard-name "► Doom")
+(setq doom-fallback-buffer-name "► Emacs"
+      +doom-dashboard-name "► Doom")
 
-;; (setq frame-title-format
-;;       '(""
-;;         (:eval
-;;          (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-;;              (replace-regexp-in-string
-;;               ".*/[0-9]*-?" "☰ "
-;;               (subst-char-in-string ?_ ?  buffer-file-name))
-;;            "%b"))
-;;         (:eval
-;;          (let ((project-name (projectile-project-name)))
-;;            (unless (string= "-" project-name)
-;;              (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
+(setq frame-title-format
+      '(""
+        (:eval
+         (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+             (replace-regexp-in-string
+              ".*/[0-9]*-?" "☰ "
+              (subst-char-in-string ?_ ?  buffer-file-name))
+           "%b"))
+        (:eval
+         (let ((project-name (projectile-project-name)))
+           (unless (string= "-" project-name)
+             (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
 
 ;; fixed font options: (SAVED HERE FOR EASE OF USE)
 ;; JetBrainsMono Nerd Font Mono
@@ -362,7 +362,7 @@
 
 (after! org
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "PROJ(p!)" "ASGN(a!)" "NEXT(n!)" "HOLD(h!)" "BLKD(b@/!)" "|" "DONE(d!)" "CANC(c@)"))))
+        '((sequence "TODO(t!)" "ACTIVE(k!)" "PROJ(p!)" "ASGN(a!)" "NEXT(n!)" "HOLD(h!)" "BLKD(b@/!)" "|" "DONE(d!)" "CANC(c@)"))))
 
 (after! org
   (setq org-todo-keyword-faces
