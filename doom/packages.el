@@ -48,22 +48,29 @@
                                         ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
                                         ;(unpin! t)
-
+;; vulpea for org functions
 (package! s)
 (package! vulpea)
 
+;; better syntax highlighting
 (package! tree-sitter)
 (package! tree-sitter-langs)
 
+;; add org-roam-ui
 (unpin! org-roam)
 (package! org-roam-ui)
 
+;; improved dired
 (package! peep-dired)
 (package! dired-open)
+
+;; better org bullets
 (package! org-bullets)
 
+;; js formatter
 (package! prettier-js)
 
+;; add gitconfig and gitignore mode
 (package! gitconfig-mode
   :recipe (:host github :repo "magit/git-modes"
            :files ("gitconfig-mode.el")))
@@ -85,5 +92,5 @@
 (package! nerd-fonts
   :recipe (:host github :repo "mohkale/nerd-fonts.el"))
 
-;; for easier inline latex editing
+;; for easier inline latex editing (auto toggles latex fragments between edit and pretty views)
 (package! org-fragtog)
