@@ -75,6 +75,10 @@ else
     fi
 fi
 unset __conda_setup
+
+if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/mamba.sh" ]; then
+    . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/mamba.sh"
+fi
 # <<< conda initialize <<<
 
 export VIRTUAL_ENV_DISABLE_PROMPT=true
