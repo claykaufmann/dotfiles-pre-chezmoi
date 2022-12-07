@@ -5,6 +5,8 @@
 
 set nocompatible
 
+nnoremap <esc>^[ <esc>^[
+
 if has ('filetype')
   filetype indent plugin on
 endif
