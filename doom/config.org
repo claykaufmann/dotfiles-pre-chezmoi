@@ -974,6 +974,13 @@ Set the agenda file directories. Use the main Org folder, the daily notes folder
                              "~/.doom.d/config.org"))
 #+end_src
 
+Dropbox updated December 2022, the folder moved to the below location, however dropbox was symlinked, this is here in case I need to change things.
+#+begin_src emacs-lisp
+;; (setq org-agenda-files (list "~/Library/CloudStorage/Terrapin/daily/"
+;;                              "~/Library/CloudStorage/Terrapin/"
+;;                              "~/.doom.d/config.org"))
+#+end_src
+
 Disable the diary by default in agenda views, as it adds clutter to the default weekly agenda. In the weekly agenda I simply want to see when tasks are due, I do not want to see when my classes are.
 #+begin_src emacs-lisp
 (setq org-agenda-include-diary t)

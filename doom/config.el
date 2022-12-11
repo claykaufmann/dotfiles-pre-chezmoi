@@ -684,6 +684,10 @@
                              "~/Dropbox/Terrapin/"
                              "~/.doom.d/config.org"))
 
+;; (setq org-agenda-files (list "~/Library/CloudStorage/Terrapin/daily/"
+;;                              "~/Library/CloudStorage/Terrapin/"
+;;                              "~/.doom.d/config.org"))
+
 (setq org-agenda-include-diary t)
 
 (setq org-agenda-start-with-log-mode t)
