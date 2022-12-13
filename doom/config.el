@@ -680,13 +680,13 @@
          :target (file+head "%<%Y-%m-%d>.org"
                             "#+title: %<%Y-%m-%d>\n"))))
 
-(setq org-agenda-files (list "~/Dropbox/Terrapin/daily/"
-                             "~/Dropbox/Terrapin/"
-                             "~/.doom.d/config.org"))
-
-;; (setq org-agenda-files (list "~/Library/CloudStorage/Terrapin/daily/"
-;;                              "~/Library/CloudStorage/Terrapin/"
+;; (setq org-agenda-files (list "~/Dropbox/Terrapin/daily/"
+;;                              "~/Dropbox/Terrapin/"
 ;;                              "~/.doom.d/config.org"))
+
+(setq org-agenda-files (list "~/Library/CloudStorage/Dropbox/Terrapin/daily/"
+                             "~/Library/CloudStorage/Dropbox/Terrapin/"
+                             "~/.doom.d/config.org"))
 
 (setq org-agenda-include-diary t)
 

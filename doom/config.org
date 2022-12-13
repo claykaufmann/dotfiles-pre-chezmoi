@@ -969,16 +969,16 @@ Moving on to org agenda. This is one of my favorite parts of org mode. So far I 
 *** General Settings
 Set the agenda file directories. Use the main Org folder, the daily notes folder, as well as this config file so I can see todo's on my config. Eventually, this should be modified to only look at files with certain tags, as suggested by Boris Buliga [[https://d12frosted.io/posts/2021-01-16-task-management-with-roam-vol5.html][here]].
 #+begin_src emacs-lisp
-(setq org-agenda-files (list "~/Dropbox/Terrapin/daily/"
-                             "~/Dropbox/Terrapin/"
-                             "~/.doom.d/config.org"))
+;; (setq org-agenda-files (list "~/Dropbox/Terrapin/daily/"
+;;                              "~/Dropbox/Terrapin/"
+;;                              "~/.doom.d/config.org"))
 #+end_src
 
 Dropbox updated December 2022, the folder moved to the below location, however dropbox was symlinked, this is here in case I need to change things.
 #+begin_src emacs-lisp
-;; (setq org-agenda-files (list "~/Library/CloudStorage/Terrapin/daily/"
-;;                              "~/Library/CloudStorage/Terrapin/"
-;;                              "~/.doom.d/config.org"))
+(setq org-agenda-files (list "~/Library/CloudStorage/Dropbox/Terrapin/daily/"
+                             "~/Library/CloudStorage/Dropbox/Terrapin/"
+                             "~/.doom.d/config.org"))
 #+end_src
 
 Disable the diary by default in agenda views, as it adds clutter to the default weekly agenda. In the weekly agenda I simply want to see when tasks are due, I do not want to see when my classes are.
