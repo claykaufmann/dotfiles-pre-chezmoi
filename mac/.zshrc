@@ -4,6 +4,10 @@ eval "$(starship init zsh)"
 # enable sheldon plugins
 eval "$(sheldon source)"
 
+# Set main editor
+export EDITOR=/opt/homebrew/bin/nvim
+export VISUAL=/opt/homebrew/bin/nvim
+
 # ~~~~~~~ ALIASES ~~~~~~~
 alias ls='ls --color=auto'
 alias ll='ls -la'
