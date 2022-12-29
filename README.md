@@ -1,6 +1,6 @@
 # Dotfiles
 
-These are my dotfiles. This repo is used for both mac and linux.
+Before I swapped to [chezmoi](https://www.chezmoi.io/), these were my dotfiles. See [this repo](https://github.com/claykaufmann/dotfiles) for my current dotfiles.
 
 ## Installation on desktop environments
 
